@@ -16,6 +16,9 @@ from pathlib import Path
 import os, json #json을 읽어오기 위해 json을 추가해 줍니다.
 from django.core.exceptions import ImproperlyConfigured #예외 처리를 위해 불러와줍니다.
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 secret_file = os.path.join(BASE_DIR, 'secrets.json') #secrets.json을 불러와 줍니다.
 
 with open(secret_file, 'r') as f: #open as로 secret.json을 열어줍니다.
@@ -29,11 +32,6 @@ def get_secret(setting, secrets=secrets): #예외 처리를 통해 오류 발생
         raise ImproperlyConfigured(error_msg)
 
 
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -42,7 +40,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -56,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'first_app',
 ]
 
 MIDDLEWARE = [
