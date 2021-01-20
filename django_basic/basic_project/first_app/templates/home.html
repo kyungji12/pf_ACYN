@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>💜Choocheon💜</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    Hello World!
+    <div class = "contentBox"> 
+        <div class = "headerBox">
+            <!-- header -->
+        </div>
+        <div class = "mainBox">
+            <div class = "logoBox">
+                <!-- 로고 -->
+                <a href="../templates/main.html">
+                    <img src="{% static 'images/logo.png'%}" alt="choochen logo image">
+                </a>
+            </div>
+            <div class = "inputBox">
+                <!-- 검색어 입력창 -->
+                <input type="search" autocomplete="off" spellcheck="false"
+                placeholder="Choocheon 검색어 입력">
+                <img src="{% static 'images/search_icon.png'%}" alt="search icon">
+            </div>
+        <!-- 웹툰, 웹소설, 넷플릭스 -->
+            <!-- <div class="want2Visit">
+                <ul>
+                    <li>
+                        웹툰
+                    </li>
+                    <li>
+                        웹소설
+                    </li>
+                    <li>
+                        넷플릭스
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+    </div>
 </body>
 </html>

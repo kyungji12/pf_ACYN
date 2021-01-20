@@ -1,0 +1,55 @@
+.contentBox {
+    /* border : 1px solid red; */
+}
+
+.headerBox {
+    border : 1px solid blue;
+    height: 45px;
+    padding: 5px;
+}
+
+.mainBox{
+    /* border: 1px solid orange; */
+    text-align: center;
+}
+
+.logoBox {
+    /* border : 1px solid blueviolet; */
+    margin: 60px 0 20px 0;
+    height: 200px;
+}
+
+.inputBox {
+    /* border : 1px solid green; */
+    position: relative;
+    height : 45px;
+    /* margin: 10px 0 38px 0; */
+}
+
+.inputBox input {
+    border-radius: 20px;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    border: none;
+    font-size: 16px;
+    height: 100%;
+    outline: none;
+    padding-inline-end: 40px;
+    padding-inline-start: 52px;
+    position: relative;
+    width: 40%;
+}
+
+.inputBox img {
+    width: 24px;
+    position: absolute;
+    left: 32%;
+    top: 25%;
+}
+
+.want2Visit {
+    /* border : 1px solid black; */
+}
+
+.want2Visit ul li {
+    display : inline;
+}
