@@ -1,16 +1,19 @@
 from django.db import models
-# from django.contrib.auth.models
+# from django.contrib.auth.models import User
 
 # Create your models here.
 class AiClass(models.Model):
     class_num = models.IntegerField()
     lecturer = models.CharField(max_length=30)
     class_room = models.CharField(max_length=30)
-    student_num = models.IntegerField()
+    student_num = models.IntegerField(null=True)
 
 class AiStudent(models.Model):
+    participate_class = models.ForeignKey(AiClass,
+    on_delete=models.CASCADE, related_name = 'student', null=True, default = '')    
     # 학생 테이블
-    class_num = models.IntegerField()  # fk로 class 테이블 pk받아오기
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name= 'student')
+    # class_num = models.IntegerField(null = True)  # fk로 class 테이블 pk받아오기
     name = models.CharField(max_length=10)  #학생이름
     phone_num = models.CharField(null=True, max_length=20)  #연락처
     # intro = models.CharField(null=True, max_length=100)  #자기소개

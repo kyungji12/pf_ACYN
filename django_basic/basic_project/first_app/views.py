@@ -20,8 +20,21 @@ def main(request):
     return render(request, 'main.html', context) #객체에 담은 데이터 화면에 뿌리기
 
 def detail(request, class_pk):
+    # print('⭐️⭐️⭐️⭐️⭐️⭐️',class_pk)
     class_obj = AiClass.objects.get(pk = class_pk) #class_pk인 데이터 가져오기
+    student_obj = AiStudent.objects.filter(participate_class=class_pk)
 
-    context = {'class_obj': class_obj} #pk 객체에 담기
+    context = {
+        'class_pk' : class_pk,
+        'class_obj': class_obj,
+        'student_obj' : student_obj
+        } #pk 객체에 담기
 
     return render(request, 'detail.html',context)
+
+# def student(request, student_pk):
+#     student = AiStudent.objects.get(pk = student_pk)
+
+#     context = {'student':student}
+
+#     return render(request, 'student.html', context)

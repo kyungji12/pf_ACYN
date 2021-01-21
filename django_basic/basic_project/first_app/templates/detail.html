@@ -11,17 +11,17 @@
 <body>
     <h1>DETAIL PAGE</h1>
     <table>
-        <th>학생 정보</th>
+        <th>{{class_obj.pk}}반 학생 정보</th>
         <tr>
-            <td>번호</td>
+            {% comment %} <td>번호</td> {% endcomment %}
             <td>이름</td>
             <td>연락처</td>
         </tr>
-        {% for student in class_obj.student.all%}
+        {% for student in student_obj %}
         <tr>
-            <td>번호{{student.name}}</td>
-            <td>이름</td>
-            <td>연락처</td>
+            {% comment %} <td>번호</td> {% endcomment %}
+            <td>{{student.name}}</td>
+            <td>{{student.phone_num}}</td>
         </tr>   
         {% endfor %}   
     </table>
