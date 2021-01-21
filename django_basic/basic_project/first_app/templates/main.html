@@ -1,0 +1,57 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout'%}" method="POST">
+      {% csrf_token %} {{user.get_username}}님 안녕하세요.
+      <button type="submit">로그아웃</button>
+    </form>
+    {% else %}
+    <a href="{% url 'signup' %}">회원가입하기</a>
+    <br />
+    <a href="{% url 'login' %}">로그인하기</a>
+
+    {% endif %}
+
+    <h1>HOME</h1>
+    {% for class in ai_class %}
+    <a href="{% url 'detail' class.pk %}">
+      {{class.class_num}} 반 {{class.teacher}} 강사님
+    </a>
+    <br />
+    {% endfor %}
+  </body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sytle.css'%}">
+</head>
+<body>
+    <h1>HOME PAGE</h1>
+    <ul>
+        {% for class in ai_class %} {% comment %} class.pk{% endcomment %}
+        {% comment %} ai_class라는 테이블 안에 있는 class데이터들 {% endcomment %}
+        <a href = "{% url 'detail' class.pk%}">
+            <li>
+            {{class.class_num}} 반 <span style="color : blueviolet;">{{class.lecturer}} </span>강사님
+            {% comment %} class데이터들의 column name으로 가져오기 {% endcomment %}
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생정보</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sytle.css'%}">
+</head>
+<body>
+    <h1>DETAIL PAGE</h1>
+    <table>
+        <th>학생 정보</th>
+        <tr>
+            <td>번호</td>
+            <td>이름</td>
+            <td>연락처</td>
+        </tr>
+        {% for student in class_obj.student.all%}
+        <tr>
+            <td>번호{{student.name}}</td>
+            <td>이름</td>
+            <td>연락처</td>
+        </tr>   
+        {% endfor %}   
+    </table>
+</body>
+</html>

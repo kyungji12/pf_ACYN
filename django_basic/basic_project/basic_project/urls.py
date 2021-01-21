@@ -19,5 +19,8 @@ from first_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name="home" ),
+    # path('', views.home, name="home" ),
+    path('', views.main, name="main"),
+    path('detail/<int:class_pk>', views.detail, name="detail"), 
+
 ]
