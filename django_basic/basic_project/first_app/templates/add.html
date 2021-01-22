@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생 추가하기</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sytle.css'%}">
+</head>
+<body>
+    <h1>ADD STUDENT</h1>
+    <form action="{% url 'add' class_obj.pk%}" method="POST">
+    </form>
+</body>
+</html>

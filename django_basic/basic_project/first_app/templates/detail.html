@@ -24,6 +24,9 @@
             <td>{{student.phone_num}}</td>
         </tr>   
         {% endfor %}   
+
+        <a href="{% url 'add' class_obj.pk %}">학생 추가하기 ►</a>
+        <a href="{% url 'main' %}">메인 화면으로 이동</a>
     </table>
 </body>
 </html>

@@ -38,3 +38,6 @@ def detail(request, class_pk):
 #     context = {'student':student}
 
 #     return render(request, 'student.html', context)
+
+def add(request, class_pk):
+    
