@@ -10,7 +10,7 @@ class AiClass(models.Model):
 
 class AiStudent(models.Model):
     participate_class = models.ForeignKey(AiClass,
-    on_delete=models.CASCADE, related_name = 'student', null=True, default = '')    
+    on_delete=models.CASCADE, related_name = 'student')    
     # 학생 테이블
     # user = models.OneToOneField(User, on_delete=models.CASCADE, related_name= 'student')
     # class_num = models.IntegerField(null = True)  # fk로 class 테이블 pk받아오기

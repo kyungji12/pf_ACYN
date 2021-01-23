@@ -40,4 +40,13 @@ def detail(request, class_pk):
 #     return render(request, 'student.html', context)
 
 def add(request, class_pk):
+    class_obj = AiClass.objects.get(pk=class_pk)
     
+    if request.method == 'POST':
+        AiStudent.objects.create(participate_class = class_pk,
+                                 name=request.POST['name'],
+                                phone_num = request.POST['phone_num'])
+        return redirect('detail', class_pk)
+    
+    context = {'class_obj' : class_obj}
+    return render(request, 'add.html', context)
