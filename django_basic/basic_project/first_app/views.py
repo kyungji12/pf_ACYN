@@ -50,3 +50,9 @@ def add(request, class_pk):
     
     context = {'class_obj' : class_obj}
     return render(request, 'add.html', context)
+
+def edit(request, student_pk):
+    #get(pk)는 object만 반환, filter는 queryset자체를 반환
+    student_obj = AiStudent.objects.filter(pk=student_pk)
+    print('🍀',student_obj)
+    #return redirect('detail', class_pk)

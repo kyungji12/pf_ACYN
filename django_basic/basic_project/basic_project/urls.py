@@ -22,5 +22,6 @@ urlpatterns = [
     # path('', views.home, name="home" ),
     path('', views.main, name="main"),
     path('detail/<int:class_pk>', views.detail, name="detail"), 
-    path('add/<int:class_pk>', views.add, name="add")
+    path('add/<int:class_pk>', views.add, name="add"),
+    path('edit/<int:student_pk>', views.edit, name="edit"),
 ]
