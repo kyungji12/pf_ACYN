@@ -24,7 +24,12 @@
             <td>{{student.intro}}</td>
             <td>{{student.interest}}</td>
             <td><a href="{% url 'edit' student.pk %}">⭐️정보 수정</a></td>
-            <td><button>🥲학생 삭제하기</button></td>
+            <form action="{% url 'delete' student.participate_class.class_num student.pk%}" method = "POST">
+            {% csrf_token %}
+            <td>
+                <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">🥲학생 삭제하기</button>
+            </td>
+            </form>
         </tr>     
         <a href="{% url 'main' %}">메인 화면으로 이동</a>
     </table>

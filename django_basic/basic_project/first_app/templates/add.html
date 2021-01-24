@@ -14,6 +14,8 @@
         {% csrf_token %}
         <input placeholder="이름을 입력하세요" name = "name">
         <input placeholder="전화번호를 입력하세요" name = "phone_num">
+        <textarea placeholder="자기소개를 입력하세요" name = "intro" ></textarea>
+        <textarea placeholder="관심사를 입력하세요" name = "interest" ></textarea>
         <button type="submit">등록하기 ►</button>
         <a href="{% url 'detail' class_obj.pk%}">반 정보로 돌아가기</a>
     </form>

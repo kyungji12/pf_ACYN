@@ -38,7 +38,10 @@ def add(request, class_pk):
     if request.method == 'POST':
         AiStudent.objects.create(participate_class = class_obj,
                                  name=request.POST['name'],
-                                phone_num = request.POST['phone_num'])
+                                phone_num = request.POST['phone_num'],
+                                intro = request.POST['intro'],
+                                interest=request.POST['interest']
+                                )
         return redirect('detail', class_pk)
     
     context = {'class_obj' : class_obj}
@@ -68,3 +71,11 @@ def student(request, student_pk):
     # print('🌷', target_student.name)
     context = { 'student' : target_student}
     return render(request, 'student.html', context)
+
+def delete(request, class_num, student_pk):
+    target_student = AiStudent.objects.get(pk = student_pk)
+    target_student.delete()
+
+    class_pk = class_num
+
+    return redirect('detail', class_pk)
