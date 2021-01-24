@@ -49,12 +49,22 @@ def edit(request, student_pk):
         target_student = AiStudent.objects.filter(pk = student_pk)
         #update하려면 filter로 해야함
         target_student.update(name=request.POST['name'],
-                            phone_num = request.POST['phone_num'])
-        # class_room = target_student.participate_class
-        class_room = AiStudent.objects.get(pk = student_pk)
-        print('💜', class_room.participate_class)
-        return redirect('detail', class_room)
+                            phone_num = request.POST['phone_num'],
+                            intro = request.POST['intro'],
+                            interest=request.POST['interest']
+                            )
+
+        # class_room = AiStudent.objects.get(pk = student_pk).participate_class.class_num
+        # print('💜', class_room)
+        # return redirect('detail', class_room)
+        return redirect('student', student_pk)
 
     student = AiStudent.objects.get(pk=student_pk)
     context = {'student': student}
     return render(request, 'edit.html', context)
+
+def student(request, student_pk):
+    target_student = AiStudent.objects.get(pk = student_pk)
+    # print('🌷', target_student.name)
+    context = { 'student' : target_student}
+    return render(request, 'student.html', context)

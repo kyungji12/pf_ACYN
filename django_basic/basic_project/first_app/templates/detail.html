@@ -21,7 +21,7 @@
         {% for student in student_obj %}
         <tr>
             {% comment %} <td>번호</td> {% endcomment %}
-            <td>{{student.name}}</td>
+            <td><a href = "{% url 'student' student.pk%}">{{student.name}}</a></td>
             <td>{{student.phone_num}}</td>
             <td><a href="{% url 'edit' student.pk %}">⭐️수정</a></td>
         </tr>   

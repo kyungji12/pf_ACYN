@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생 정보</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sytle.css'%}">
+</head>
+<body>
+    <h1>DETAIL PAGE</h1>
+    <table>
+        <th>{{class_obj.pk}}반 {{student.name}}학생 정보</th>
+        <tr>
+            <td>이름</td>
+            <td>연락처</td>
+            <td>자기소개</td>
+            <td>관심사</td>
+        </tr>
+        <tr>
+            <td>{{student.name}}</td>
+            <td>{{student.phone_num}}</td>
+            <td>{{student.intro}}</td>
+            <td>{{student.interest}}</td>
+            <td><a href="{% url 'edit' student.pk %}">⭐️정보 수정</a></td>
+            <td><button>🥲학생 삭제하기</button></td>
+        </tr>     
+        <a href="{% url 'main' %}">메인 화면으로 이동</a>
+    </table>
+</body>
+</html>

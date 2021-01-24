@@ -16,8 +16,8 @@ class AiStudent(models.Model):
     # class_num = models.IntegerField(null = True)  # fk로 class 테이블 pk받아오기
     name = models.CharField(max_length=10)  #학생이름
     phone_num = models.CharField(null=True, max_length=20)  #연락처
-    # intro = models.CharField(null=True, max_length=100)  #자기소개
-    # interest = models.CharField(null=True, max_length=50)  #관심사
+    intro = models.CharField(null=True, max_length=100)  #자기소개
+    interest = models.CharField(null=True, max_length=50)  #관심사
 
 ############################################################
 # 1 : N 구조
