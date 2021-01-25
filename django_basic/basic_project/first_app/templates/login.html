@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sytle.css'%}">
+</head>
+<body>
+    <h1>LOGIN</h1>
+
+    {% if error.state %} 
+    {% comment %} error = True라면  {% endcomment %}
+        <h2>{{ error.msg }}</h2>
+    {% endif %}
+
+    <form action="{% url 'login'%}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="아이디 입력" name="user_id" />
+        <br/>
+        <br/>
+        <input type="password" placeholder="비밀번호 입력" name="user_pw" />
+        <br/>
+        <br/>
+        <button type="submit">로그인하기</button>
+    </form>
+
+</body>
+</html>
