@@ -1,2 +1,10 @@
 #no secrets.json files
 *secrets.json
+
+Project/db.sqlite3
+**/db.sqlite3
+__pycache__
+
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
