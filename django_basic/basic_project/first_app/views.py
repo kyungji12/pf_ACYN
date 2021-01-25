@@ -108,17 +108,17 @@ def signup(request):
         user_pw = request.POST['user_pw']
         user_pw_check = request.POST['user_pw_check']
 
-        class_num = int(request.POST['class_num'])
-        participate_class = AiClass.objects.get(class_num = class_num)
-        name = request.POST['name']
-        phone_num = request.POST['phone_num']
+        # class_num = int(request.POST['class_num'])
+        # participate_class = AiClass.objects.get(class_num = class_num)
+        # name = request.POST['name']
+        # phone_num = request.POST['phone_num']
 
-        AiStudent.objects.create(
-            participate_class=participate_class,
-            user = created_user,
-            name = name,
-            phone_num = phone_num
-            )
+        # AiStudent.objects.create(
+        #     participate_class=participate_class,
+        #     user = created_user,
+        #     name = name,
+        #     phone_num = phone_num
+        #     )
         
         if (user_id and user_pw) :
             user = User.objects.filter(username=user_id)
