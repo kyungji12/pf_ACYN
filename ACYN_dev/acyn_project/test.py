@@ -5,6 +5,15 @@ import re
 import os
 from urllib.parse import urlparse
 
+#db에 저장
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', "acyn_project.settings")
+import django
+
+django.setup()
+
+from webCrawlApp.models import TestData
+
+
 def fetch_naver_webtoon_latest_data():
 
     result = []
@@ -77,10 +86,13 @@ def fetch_naver_webtoon_latest_data():
         result.append(naver_webtoon)
 
     # print(result)
+    # return result
     return naver_webtoon
 
-# if __name__ == '__main__':
-#     fetch_naver_webtoon_latest_data()
+if __name__ == '__main__':
+    test_dict = fetch_naver_webtoon_latest_data()
+    for t in test_dict.keys():
+        TestData(title=t, intro= test_dict[t]['intro'], genre=test_dict[t]['genre'], url=test_dict[t]['url']).save()
 
 # with open('naver_webtoon.csv', 'w', newline='', encoding='utf-8-sig') as file:
 #     writer = csv.DictWriter(file, fieldnames = ['tilte', 'intro', 'url'])
