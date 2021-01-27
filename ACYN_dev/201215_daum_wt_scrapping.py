@@ -4,12 +4,12 @@ import csv
 import re
 import json
 
-# daum_wt_url = 'http://webtoon.daum.net/'
-# daum_response = requests.get(daum_wt_url)
-# # print(daum_response)
+daum_wt_url = 'http://webtoon.daum.net/'
+daum_response = requests.get(daum_wt_url)
+# print(daum_response)
 
-# soup = BeautifulSoup(daum_response.text, 'html.parser')
-# # print(soup.select('ul[id=dayListTab]'))
+soup = BeautifulSoup(daum_response.text, 'html.parser')
+# print(soup.select('ul[id=dayListTab]'))
 
 cookies = {
     '_TI_NID': 'iok9mjEFfnWoNqMjDA5hhW8k8kKH0Wiv8TYB6cQK/PKjTcLbEABjYteWe2L9+Sj6X0L25eis8QV+IXJuAbaCWQ==',
@@ -39,15 +39,24 @@ day_all = ['mon', 'tue', 'wed','thu','fri','sat','sun']
 daum_webtoon = {}
 
 for day in day_all : 
-        daum_wt_response = requests.get('http://webtoon.daum.net/data/pc/webtoon/list_serialized/'+day, headers=headers, params=params, cookies=cookies,verify=False)
-        daum_dict = json.loads(daum_wt_response.text)
-        for i in range(len(daum_dict['data'])):
-            daum_webtoon[daum_dict['data'][i]['title']] = {
-                'intro': daum_dict['data'][i]['introduction'],
-                'url' : 'http://webtoon.daum.net/webtoon/view/'+ daum_dict['data'][i]['nickname']
-            }
+    daum_wt_response = requests.get('http://webtoon.daum.net/data/pc/webtoon/list_serialized/'+day, headers=headers, params=params, cookies=cookies,verify=False)
+    daum_dict = json.loads(daum_wt_response.text)
+    # print(daum_dict)
+    for i in range(len(daum_dict['data'])):
+        daum_webtoon[daum_dict['data'][i]['title']] = {
+            'intro': daum_dict['data'][i]['introduction'],
+            'url' : 'http://webtoon.daum.net/webtoon/view/'+ daum_dict['data'][i]['nickname'],
+            # 'genre': daum_dict['data'][i]['cartoon']['genres'],
+            'genre' : list(item['name'] for item in daum_dict['data'][i]['cartoon']['genres']),
+            'thumbnail' : daum_dict['data'][i]['thumbnailImage2']['url']
+        }
+# print(daum_webtoon)
 
-with open('daum_webtoon.csv', 'w', newline='',encoding='utf-8-sig') as file:
-  writer = csv.DictWriter(file, fieldnames = ['title', 'intro', 'url'])
-  for key in daum_webtoon.keys():
-      writer.writerow({'title' : key, 'intro' : daum_webtoon[key]['intro'], 'url': daum_webtoon[key]['url']})
+# # print([{'id': 14, 'name': '스릴러'}, {'id': 8, 'name': '공포'}])
+# test = [{'id': 14, 'name': '스릴러'}, {'id': 8, 'name': '공포'}]
+# print(list(m['name'] for m in daum_dict['data'][i]['cartoon']['genres']))
+
+# with open('daum_webtoon.csv', 'w', newline='',encoding='utf-8-sig') as file:
+#   writer = csv.DictWriter(file, fieldnames = ['title', 'intro', 'url'])
+#   for key in daum_webtoon.keys():
+#       writer.writerow({'title' : key, 'intro' : daum_webtoon[key]['intro'], 'url': daum_webtoon[key]['url']})

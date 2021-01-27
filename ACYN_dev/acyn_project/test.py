@@ -4,13 +4,11 @@ from bs4 import BeautifulSoup
 import re
 import os
 from urllib.parse import urlparse
-
 #db에 저장
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', "acyn_project.settings")
 import django
-
 django.setup()
-
+#model import
 from webCrawlApp.models import TestData
 
 
@@ -62,16 +60,14 @@ def fetch_naver_webtoon_latest_data():
         nwt_genre = detail_soup.select('#content > div.comicinfo > div.detail > p.detail_info > span.genre')
         nwt_genre = re.sub("<.*?>", " ", str(nwt_genre))
         nwt_genre = nwt_genre.replace('[', ' ').replace(']', ' ').strip()
-        # #thumbnail
-        # nwt_thumb = detail_soup.select('#content > div.comicinfo > div.thumb > a > img')
-        # nwt_thumb = nwt_thumb.find('src')
+        #thumbnail
+        nwt_thumb = detail_soup.select_one('#content > div.comicinfo > div.thumb > a > img')
+        nwt_thumb = nwt_thumb['src']
         
         naver_wt_intro.append(nwt_intros)
         naver_wt_url.append(detail_url)
         naver_wt_genre.append(nwt_genre)
-        # naver_wt_thumbnail.append()
-
-        # print(nwt_thumb)
+        naver_wt_thumbnail.append(nwt_thumb)
 
 
     naver_webtoon = {}
@@ -81,19 +77,26 @@ def fetch_naver_webtoon_latest_data():
             'intro' : naver_wt_intro[i],
             'url' : naver_wt_url[i],
             'genre' : naver_wt_genre[i]
-            # 'thumbnail' : naver_wt_thumbnail[i]
+            'thumbnail' : naver_wt_thumbnail[i]
         }
         result.append(naver_webtoon)
 
     # print(result)
     # return result
-    return naver_webtoon
+    # return naver_webtoon
 
 if __name__ == '__main__':
     test_dict = fetch_naver_webtoon_latest_data()
     for t in test_dict.keys():
-        TestData(title=t, intro= test_dict[t]['intro'], genre=test_dict[t]['genre'], url=test_dict[t]['url']).save()
+        TestData(
+            title=t, 
+            intro= test_dict[t]['intro'], 
+            genre=test_dict[t]['genre'],
+            url=test_dict[t]['url'],
+            thumbnail=test_dict[t]['thumbnail']
+            ).save()
 
+# csv file로 저장
 # with open('naver_webtoon.csv', 'w', newline='', encoding='utf-8-sig') as file:
 #     writer = csv.DictWriter(file, fieldnames = ['tilte', 'intro', 'url'])
 #     for key in naver_webtoon.keys():
