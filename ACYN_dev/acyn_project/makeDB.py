@@ -13,6 +13,7 @@ django.setup()
 #model import
 from webCrawlApp.models import NaverWebtoon, NaverWebnovel, DaumWebtoon, Netflix
 
+
 #네이버 웹툰
 def fetch_naver_webtoon_latest_data():
     naver_wt_url = 'https://comic.naver.com/webtoon/weekday.nhn'
@@ -216,9 +217,9 @@ def fetch_netflix_latest_data():
                 netflix_intro.append(intro)
                 netflix_url.append(url)
                 # print(netflix_title) 
-    
+                print(num)
             except:
-                # print("except",num)
+                print("except",num)
                 pass #3039는 글 지워짐
 
     netflix_content = {}
@@ -272,5 +273,6 @@ if __name__ == '__main__':
             intro= netflix_dict[i]['intro'], 
             genre=netflix_dict[i]['genre'],
             url=netflix_dict[i]['url'],
-            thumbnail=netflix_dict[i]['thumbnail']
+            # thumbnail=netflix_dict[i]['thumbnail']ㅓ
+            thumbnail= ''
             ).save()
