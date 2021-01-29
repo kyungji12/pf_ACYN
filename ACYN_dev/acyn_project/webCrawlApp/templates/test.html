@@ -21,24 +21,28 @@
                 </a>
             </div>
             <div class = "netflixData">
-                <table>
-                    <tr>
-                        <td>제목</td>
-                        <td>대표이미지</td>
-                        <td>장르</td>
-                        <td>소개</td>
-                        <td>보러가기</td>
-                    </tr>
-                    {% for td in result_data %}
+                    {% if error.state %}
+                        <p>{{ error.msg }}</p>
+                    {% else %}
+                    <table>
                             <tr>
-                                <td>{{ count }}{{td.title}}</td>
+                                <td>제목</td>
+                                <td>대표이미지</td>
+                                <td>장르</td>
+                                <td>소개</td>
+                                <td>보러가기</td>
+                            </tr>
+                        {% for td in result_data %}
+                            <tr>
+                                <td>{{td.title}}</td>
                                 <td><img src = "{{td.thumbnail}}"></td>
                                 <td>{{td.genre}}</td>
                                 <td>{{td.intro}}</td>
                                 <td><a href="{{td.url}}">►</a></td>
                             </tr>
-                    {% endfor %}
-                </table>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
             </div>
         </div>
     </div>

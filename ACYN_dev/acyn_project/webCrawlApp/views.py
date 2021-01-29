@@ -14,20 +14,27 @@ def result(request):
     # 
     result_data = NaverWebtoon.objects.filter(intro__contains = input_val)
     # print('💜', result_data.count())
-    count = result_data.count()
-
     context = {
+        'error' : {
+            'state' : False,
+            'msg' : ''
+        },
         'result_data' : result_data
     }
 
-    # if count == 0 :
-    #     context = {
-    #         'result_data' : result_data,
-    #         'msg' : '데이터가 없습니다. '
-    #     }
-    #     # print("💜")
-    # else :
-    #     context = {
-    #         'result_data' : result_data
-    #     }
-    return render(request, 'test.html', context)
+    if input_val : #입력값이 있다면
+        if not result_data : #일치하는 값이 없다면 
+            context['error']['state'] = True
+            context['error']['msg'] = '찾으시는 컨텐츠가 없습니다.'
+            return render(request, 'test.html', context)
+        else : #일치하는 값이 있다면
+            return render(request, 'test.html', context)
+
+    else : #입력값이 없다면
+        context['error']['state'] = True
+        context['error']['msg'] = '검색어를 입력해주세요.'
+        
+        return render(request, 'main.html', context)
+
+
+    

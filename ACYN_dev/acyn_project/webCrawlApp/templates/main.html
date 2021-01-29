@@ -29,6 +29,9 @@
                     <img src="{% static 'images/search_icon.png'%}" alt="search icon">
                 </div>
             </form>
+            {% if error.state %}
+                <p>{{ error.msg }}</p>
+            {% endif %}
         <!-- 웹툰, 웹소설, 넷플릭스 -->
             <!-- <div class="want2Visit">
                 <ul>
