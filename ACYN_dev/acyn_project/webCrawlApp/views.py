@@ -11,7 +11,7 @@ def home(request):
 
 def result(request):
     input_val = request.POST['input_val']
-    # 
+
     result_data = NaverWebtoon.objects.filter(intro__contains = input_val)
     # print('💜', result_data.count())
     context = {
@@ -26,9 +26,9 @@ def result(request):
         if not result_data : #일치하는 값이 없다면 
             context['error']['state'] = True
             context['error']['msg'] = '찾으시는 컨텐츠가 없습니다.'
-            return render(request, 'test.html', context)
+            return render(request, 'result.html', context)
         else : #일치하는 값이 있다면
-            return render(request, 'test.html', context)
+            return render(request, 'result.html', context)
 
     else : #입력값이 없다면
         context['error']['state'] = True
