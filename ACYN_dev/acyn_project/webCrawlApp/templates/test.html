@@ -29,14 +29,14 @@
                         <td>소개</td>
                         <td>보러가기</td>
                     </tr>
-                    {% for td in testDT %}
-                    <tr>
-                        <td>{{td.title}}</td>
-                        <td><img src = "{{td.thumbnail}}"></td>
-                        <td>{{td.genre}}</td>
-                        <td>{{td.intro}}</td>
-                        <td><a href="{{td.url}}">►</a></td>
-                    </tr>
+                    {% for td in result_data %}
+                            <tr>
+                                <td>{{ count }}{{td.title}}</td>
+                                <td><img src = "{{td.thumbnail}}"></td>
+                                <td>{{td.genre}}</td>
+                                <td>{{td.intro}}</td>
+                                <td><a href="{{td.url}}">►</a></td>
+                            </tr>
                     {% endfor %}
                 </table>
             </div>

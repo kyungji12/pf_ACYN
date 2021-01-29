@@ -10,30 +10,24 @@ def home(request):
     return render(request, 'main.html')
 
 def result(request):
-    # context = {
-    #     'error' : {
-    #         'state' : False, 
-    #         'mgs' : ''
-    #     }
-    # }
+    input_val = request.POST['input_val']
+    # 
+    result_data = NaverWebtoon.objects.filter(intro__contains = input_val)
+    # print('💜', result_data.count())
+    count = result_data.count()
 
-    # input_val = request.POST['input_val']
-    # print("🥲", input_val)
-
-    test_data = NaverWebtoon.objects.all() #데이터 가져오기
-    
     context = {
-        'testDT' : test_data
+        'result_data' : result_data
     }
 
-    # (입력한 단어가 있을 때 -> 데이터 안에 있을 때 vs 없을 때) vs (없을 때)
-    # if input_val = request.POST['input_val']:
-    #     title = 
-    
-    # else : 
-
-    # context = {
-    #     'input_val' : input_val
-    # }
-    # return render(request, 'result.html', context)
+    # if count == 0 :
+    #     context = {
+    #         'result_data' : result_data,
+    #         'msg' : '데이터가 없습니다. '
+    #     }
+    #     # print("💜")
+    # else :
+    #     context = {
+    #         'result_data' : result_data
+    #     }
     return render(request, 'test.html', context)
