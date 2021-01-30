@@ -32,13 +32,44 @@
                                 <td>소개</td>
                                 <td>보러가기</td>
                             </tr>
-                        {% for td in result_data %}
+                        {% comment %} Naver Webtoon {% endcomment %}
+                        {% for naverWT in result_data.naver_wt %}
                             <tr>
-                                <td>{{td.title}}</td>
-                                <td><img src = "{{td.thumbnail}}"></td>
-                                <td>{{td.genre}}</td>
-                                <td>{{td.intro}}</td>
-                                <td><a href="{{td.url}}">►</a></td>
+                                <td>{{naverWT.title}}</td>
+                                <td><img src = "{{naverWT.thumbnail}}"></td>
+                                <td>{{naverWT.genre}}</td>
+                                <td>{{naverWT.intro}}</td>
+                                <td><a href="{{naverWT.url}}">►</a></td>
+                            </tr>
+                        {% endfor %}
+                        {% comment %} Naver Webnovel {% endcomment %}
+                        {% for naverNV in result_data.naver_nv %}
+                            <tr>
+                                <td>{{naverNV.title}}</td>
+                                <td><img src = "{{naverNV.thumbnail}}"></td>
+                                <td>{{naverNV.genre}}</td>
+                                <td>{{naverNV.intro}}</td>
+                                <td><a href="{{naverNV.url}}">►</a></td>
+                            </tr>
+                        {% endfor %}
+                        {% comment %} Daum Webtoon {% endcomment %}
+                        {% for daumWT in result_data.daum_wt %}
+                            <tr>
+                                <td>{{daumWT.title}}</td>
+                                <td><img src = "{{daumWT.thumbnail}}"></td>
+                                <td>{{daumWT.genre}}</td>
+                                <td>{{daumWT.intro}}</td>
+                                <td><a href="{{daumWT.url}}">►</a></td>
+                            </tr>
+                        {% endfor %}  
+                        {% comment %} Netflix {% endcomment %}
+                        {% for netfl in result_data.netflix %}
+                            <tr>
+                                <td>{{netfl.title}}</td>
+                                <td><img src = "{{netfl.thumbnail}}"></td>
+                                <td>{{netfl.genre}}</td>
+                                <td>{{netfl.intro}}</td>
+                                <td><a href="{{netfl.url}}">►</a></td>
                             </tr>
                         {% endfor %}
                     </table>

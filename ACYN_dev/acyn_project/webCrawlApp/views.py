@@ -12,7 +12,18 @@ def home(request):
 def result(request):
     input_val = request.POST['input_val']
 
-    result_data = NaverWebtoon.objects.filter(intro__contains = input_val)
+    naver_wt = NaverWebtoon.objects.filter(intro__contains = input_val)
+    naver_nv = NaverWebnovel.objects.filter(intro__contains = input_val)
+    daum_wt = DaumWebtoon.objects.filter(intro__contains = input_val)
+    netflix = Netflix.objects.filter(intro__contains = input_val)
+
+    result_data = {
+        'naver_wt' : naver_wt,
+        'naver_nv' : naver_nv,
+        'daum_wt' : daum_wt,
+        'netflix' : netflix
+    }
+
     # print('💜', result_data.count())
     context = {
         'error' : {
