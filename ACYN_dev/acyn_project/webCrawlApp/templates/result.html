@@ -9,13 +9,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class = "contentBox"> 
+    <div class = "contentWrap"> 
         <div class = "headerBox">
             <!-- header -->
             <div class = "headerLogo">
                 <!-- 로고 -->
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/header_logo.png'%}" alt="choochen logo image">
+                    <img src="{% static 'images/header_logo.png' %}" alt="choochen logo image">
                 </a>
             </div>
         </div>
@@ -28,14 +28,20 @@
                     <p>네이버 웹툰</p>
                     <div class = "platform naverWT">
                         {% for naverWT in result_data.naver_wt %}
-                        <div class = "ulBox">
-                            <ul>
-                                <li class="thumbnail"><img src = "{{naverWT.thumbnail}}"></li>
-                                <li class="title">{{naverWT.title}}</li>
-                                <li class="genre">{{naverWT.genre}}</li>
-                                <li class="intro">{{naverWT.intro}}</li>
-                                <li claass="want2Visit"><a href="{{naverWT.url}}">►</a></li>
-                            </ul>
+                        <div class = "contentBox">
+                            <div class="thumbnailBox">
+                                {% if naverWT.thumbnail %}
+                                    <img src = "{{naverWT.thumbnail}}">
+                                {% else %}
+                                    <img src = "{% static 'images/Naver_Webtoon_logo.png' %}">
+                                {% endif %}
+                                <ul>
+                                    <li class="title">{{naverWT.title}}</li>
+                                    <li class="genre">{{naverWT.genre}}</li>
+                                    <li claass="want2Visit"><a href="{{naverWT.url}}">►</a></li>
+                                </ul>
+                            </div>
+                            <div class="intro">{{naverWT.intro}}</div>
                         </div>
                         {% endfor %}
                     </div>
@@ -43,45 +49,63 @@
                     <p>네이버 웹소설</p>
                     <div class = "platform naverNV">
                         {% for naverNV in result_data.naver_nv %}
-                        <div class = "ulBox">    
-                            <ul>
-                                <li class="thumbnail"><img src = "{{naverNV.thumbnail}}"></li>
-                                <li class="title">{{naverNV.title}}</li>
-                                <li class="genre">{{naverNV.genre}}</li>
-                                <li class="intro">{{naverNV.intro}}</li>
-                                <li claass="want2Visit"><a href="{{naverNV.url}}">►</a></li>
-                            </ul>
-                        </div>    
+                        <div class = "contentBox">
+                            <div class="thumbnailBox">
+                                {% if naverNV.thumbnail %}
+                                    <img src = "{{naverNV.thumbnail}}">
+                                {% else %}
+                                    <img src = "{% static 'images/naver_series_logo.png' %}">
+                                {% endif %}
+                                <ul>
+                                    <li class="title">{{naverNV.title}}</li>
+                                    <li class="genre">{{naverNV.genre}}</li>
+                                    <li claass="want2Visit"><a href="{{naverNV.url}}">►</a></li>
+                                </ul>
+                            </div>
+                            <div class="intro">{{naverNV.intro}}</div>
+                        </div>  
                         {% endfor %}
                     </div>
                     {% comment %} Daum Webtoon {% endcomment %}
                     <p>다음 웹툰</p>
                     <div class = "platform daumWT">
                         {% for daumWT in result_data.daum_wt %}
-                        <div class = "ulBox">    
-                            <ul>
-                                <li class="thumbnail"><img src = "{{daumWT.thumbnail}}"></li>
-                                <li class="title">{{daumWT.title}}</li>
-                                <li class="genre">{{daumWT.genre}}</li>
-                                <li class="intro">{{daumWT.intro}}</li>
-                                <li claass="want2Visit"><a href="{{daumWT.url}}">►</a></li>
-                            </ul>
-                        </div>    
+                        <div class = "contentBox">
+                            <div class="thumbnailBox">
+                                {% if daumWT.thumbnail %}
+                                    <img src = "{{daumWT.thumbnail}}">
+                                {% else %}
+                                    <img src = "{% static 'images/daum_webtoon_logo.jpg' %}">
+                                {% endif %}
+                                <ul>
+                                    <li class="title">{{daumWT.title}}</li>
+                                    <li class="genre">{{daumWT.genre}}</li>
+                                    <li claass="want2Visit"><a href="{{daumWT.url}}">►</a></li>
+                                </ul>
+                            </div>
+                            <div class="intro">{{daumWT.intro}}</div>
+                        </div>  
                         {% endfor %}  
                     </div>
                     {% comment %} Netflix {% endcomment %}
                     <p>넷플릭스</p>
                     <div class = "platform Netflix">
                         {% for netfl in result_data.netflix %}
-                        <div class = "ulBox">    
-                            <ul>
-                                <li class="thumbnail"><img src = "{{netfl.thumbnail}}"></li>
-                                <li class="title">{{netfl.title}}</li>
-                                <li class="genre">{{netfl.genre}}</li>
-                                <li class="intro">{{netfl.intro}}</li>
-                                <li claass="want2Visit"><a href="{{netfl.url}}">►</a></li>
-                            </ul>
-                        </div>    
+                        <div class = "contentBox">
+                            <div class="thumbnailBox">
+                                {% if netfl.thumbnail %}
+                                    <img src = "{{netfl.thumbnail}}">
+                                {% else %}
+                                    <img src = "{% static 'images/netflix_logo.png' %}">
+                                {% endif %}
+                                <ul>
+                                    <li class="title">{{netfl.title}}</li>
+                                    <li class="genre">{{netfl.genre}}</li>
+                                    <li claass="want2Visit"><a href="{{netfl.url}}">►</a></li>
+                                </ul>
+                            </div>
+                            <div class="intro">{{netfl.intro}}</div>
+                        </div> 
                         {% endfor %}
                     </div>
                 {% endif %}

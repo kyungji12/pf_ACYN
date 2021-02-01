@@ -1,5 +1,5 @@
 /* main.html */
-.contentBox {
+.contentWrap {
     border : 1px solid red;
 }
 
@@ -73,7 +73,7 @@
     display: flex;
     flex-wrap: wrap;
 }
-.platform.naverWT {
+/* .platform.naverWT {
     background-color: slateblue;
 }
 .platform.naverNV {
@@ -84,49 +84,44 @@
 }
 .platform.Netflix {
     background-color: thistle;
-}
-.platform .ulBox {
+} */
+.platform .contentBox {
     padding: 8px;
     box-sizing: border-box;
     display: inline-box;
     line-height: 20px;
     overflow: visible;
+    position: relative;
 }
 @media (min-width: 700px) {
-    .platform .ulBox {
-        width: 33.33333%;
+    .platform .contentBox {
+        width: 50%;
     }
 }
 @media (min-width: 1200px) {
-    .platform .ulBox {
-    width: 25%;
+    .platform .contentBox {
+    width: 33.33333%;
     }
 }
-.platform ul {
-    width : 100%;
-    height: 100%;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 16px 64px -16px rgb(46 55 77 / 10%);
-    display: block;
-}
-.platform ul li {
+.thumbnailBox {
     position: relative;
-    /* overflow: hidden; */
+    height: 110px;
+    display: flex;
+    padding: 8px 0;
+    background-color: #f1ebeb;
 }
-.platform ul .thumbnail {
-    cursor: pointer;
+.thumbnailBox img {
+    width: 160px;
+    height: 100%;
+    margin-right : 10px;
 }
-.platform ul .thumbnail img {
+.thumbnailBox ul {
 
-    height: 150px;
 }
-.platform ul .title {
-    font-size: 20px;
+.thumbnailBox ul li {
+    
 }
-.platform ul .genre {
-    color : grey;
-}
-.pltfom ul .intro {
-
+.intro {
+    padding: 0 8px 8px;
+    background-color: #dcdada;
 }
