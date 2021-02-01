@@ -76,43 +76,30 @@
 .platform.naverWT {
     background-color: slateblue;
 }
-.platform.naverWT p {
-    color: green;
-}
 .platform.naverNV {
     background-color: slategray;
-}
-.platform.naverNV p {
-    color: green;
 }
 .platform.daumWT {
     background-color: steelblue;
 }
-.platform.daumWT p {
-    color: rgb(241, 88, 88);
-}
 .platform.Netflix {
     background-color: thistle;
 }
-.platform.Netflix p {
-    color: red;
-}
 .platform .ulBox {
-    /* width: 33.333%; */
     padding: 8px;
     box-sizing: border-box;
     display: inline-box;
     line-height: 20px;
     overflow: visible;
 }
-@media (min-width: 1272px) {
-    .platform .ulBox {
-    width: 25%;
-    }
-}
-@media (min-width: 792px) {
+@media (min-width: 700px) {
     .platform .ulBox {
         width: 33.33333%;
+    }
+}
+@media (min-width: 1200px) {
+    .platform .ulBox {
+    width: 25%;
     }
 }
 .platform ul {
