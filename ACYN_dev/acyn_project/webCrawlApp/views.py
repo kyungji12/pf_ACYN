@@ -46,6 +46,3 @@ def result(request):
         context['error']['msg'] = '검색어를 입력해주세요.'
         
         return render(request, 'main.html', context)
-
-
-    

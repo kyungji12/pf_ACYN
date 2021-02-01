@@ -12,68 +12,79 @@
     <div class = "contentBox"> 
         <div class = "headerBox">
             <!-- header -->
-        </div>
-        <div class = "mainBox">
-            <div class = "logoBox">
+            <div class = "headerLogo">
                 <!-- 로고 -->
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo.png'%}" alt="choochen logo image">
+                    <img src="{% static 'images/header_logo.png'%}" alt="choochen logo image">
                 </a>
             </div>
-            <div class = "netflixData">
-                    {% if error.state %}
-                        <p>{{ error.msg }}</p>
-                    {% else %}
-                    <table>
-                            <tr>
-                                <td>제목</td>
-                                <td>대표이미지</td>
-                                <td>장르</td>
-                                <td>소개</td>
-                                <td>보러가기</td>
-                            </tr>
-                        {% comment %} Naver Webtoon {% endcomment %}
+        </div>
+        <div class = "resultBox">
+            <div class = "resultData">
+                {% if error.state %}
+                    <p>{{ error.msg }}</p>
+                {% else %}
+                    {% comment %} Naver Webtoon {% endcomment %}
+                    <p>네이버 웹툰</p>
+                    <div class = "platform naverWT">
                         {% for naverWT in result_data.naver_wt %}
-                            <tr>
-                                <td>{{naverWT.title}}</td>
-                                <td><img src = "{{naverWT.thumbnail}}"></td>
-                                <td>{{naverWT.genre}}</td>
-                                <td>{{naverWT.intro}}</td>
-                                <td><a href="{{naverWT.url}}">►</a></td>
-                            </tr>
+                        <div class = "ulBox">
+                            <ul>
+                                <li class="thumbnail"><img src = "{{naverWT.thumbnail}}"></li>
+                                <li class="title">{{naverWT.title}}</li>
+                                <li class="genre">{{naverWT.genre}}</li>
+                                <li class="intro">{{naverWT.intro}}</li>
+                                <li claass="want2Visit"><a href="{{naverWT.url}}">►</a></li>
+                            </ul>
+                        </div>
                         {% endfor %}
-                        {% comment %} Naver Webnovel {% endcomment %}
+                    </div>
+                    {% comment %} Naver Webnovel {% endcomment %}
+                    <p>네이버 웹소설</p>
+                    <div class = "platform naverNV">
                         {% for naverNV in result_data.naver_nv %}
-                            <tr>
-                                <td>{{naverNV.title}}</td>
-                                <td><img src = "{{naverNV.thumbnail}}"></td>
-                                <td>{{naverNV.genre}}</td>
-                                <td>{{naverNV.intro}}</td>
-                                <td><a href="{{naverNV.url}}">►</a></td>
-                            </tr>
+                        <div class = "ulBox">    
+                            <ul>
+                                <li class="thumbnail"><img src = "{{naverNV.thumbnail}}"></li>
+                                <li class="title">{{naverNV.title}}</li>
+                                <li class="genre">{{naverNV.genre}}</li>
+                                <li class="intro">{{naverNV.intro}}</li>
+                                <li claass="want2Visit"><a href="{{naverNV.url}}">►</a></li>
+                            </ul>
+                        </div>    
                         {% endfor %}
-                        {% comment %} Daum Webtoon {% endcomment %}
+                    </div>
+                    {% comment %} Daum Webtoon {% endcomment %}
+                    <p>다음 웹툰</p>
+                    <div class = "platform daumWT">
                         {% for daumWT in result_data.daum_wt %}
-                            <tr>
-                                <td>{{daumWT.title}}</td>
-                                <td><img src = "{{daumWT.thumbnail}}"></td>
-                                <td>{{daumWT.genre}}</td>
-                                <td>{{daumWT.intro}}</td>
-                                <td><a href="{{daumWT.url}}">►</a></td>
-                            </tr>
+                        <div class = "ulBox">    
+                            <ul>
+                                <li class="thumbnail"><img src = "{{daumWT.thumbnail}}"></li>
+                                <li class="title">{{daumWT.title}}</li>
+                                <li class="genre">{{daumWT.genre}}</li>
+                                <li class="intro">{{daumWT.intro}}</li>
+                                <li claass="want2Visit"><a href="{{daumWT.url}}">►</a></li>
+                            </ul>
+                        </div>    
                         {% endfor %}  
-                        {% comment %} Netflix {% endcomment %}
+                    </div>
+                    {% comment %} Netflix {% endcomment %}
+                    <p>넷플릭스</p>
+                    <div class = "platform Netflix">
                         {% for netfl in result_data.netflix %}
-                            <tr>
-                                <td>{{netfl.title}}</td>
-                                <td><img src = "{{netfl.thumbnail}}"></td>
-                                <td>{{netfl.genre}}</td>
-                                <td>{{netfl.intro}}</td>
-                                <td><a href="{{netfl.url}}">►</a></td>
-                            </tr>
+                        <div class = "ulBox">    
+                            <ul>
+                                <li class="thumbnail"><img src = "{{netfl.thumbnail}}"></li>
+                                <li class="title">{{netfl.title}}</li>
+                                <li class="genre">{{netfl.genre}}</li>
+                                <li class="intro">{{netfl.intro}}</li>
+                                <li claass="want2Visit"><a href="{{netfl.url}}">►</a></li>
+                            </ul>
+                        </div>    
                         {% endfor %}
-                    </table>
-                    {% endif %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
