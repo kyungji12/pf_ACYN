@@ -30,13 +30,19 @@ def result(request):
             'state' : False,
             'msg' : ''
         },
-        'result_data' : result_data
+        'result_data' : result_data,
+        'input_val' : input_val
     }
 
     if input_val : #입력값이 있다면
-        if not result_data : #일치하는 값이 없다면 
+        if not(
+            context['result_data']['naver_wt'] and  
+            context['result_data']['naver_nv'] and
+            context['result_data']['daum_wt'] and
+            context['result_data']['netflix']
+            ) : #일치하는 값이 없다면 
             context['error']['state'] = True
-            context['error']['msg'] = '찾으시는 컨텐츠가 없습니다.'
+            context['error']['msg'] = '컨텐츠가 없습니다.'
             return render(request, 'result.html', context)
         else : #일치하는 값이 있다면
             return render(request, 'result.html', context)

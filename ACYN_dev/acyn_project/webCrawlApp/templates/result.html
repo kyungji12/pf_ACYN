@@ -21,12 +21,14 @@
         </div>
         <div class = "resultBox">
             <div class = "resultData">
-                {% if error.state %}
-                    <p>{{ error.msg }}</p>
-                {% else %}
+                {% if error.state %} {% comment %} state == True라면 찾는 컨텐츠 없으므로 {% endcomment %}
+                    <p style="text-align : center;">"<span>{{ input_val }}</span>"검색어와 관련된 {{ error.msg }}</p> {% comment %} 찾으시는 컨텐츠가 없습니다  {% endcomment %}
+                    <a class="arrow-box" href="{% url 'home' %}"><img src = "{% static 'images/arrow_left.png'%}">검색창으로 돌아가기</a>
+                {% else %} {% comment %} state == False라면 찾는 컨텐츠 있으므로 {% endcomment %}
+                <p>찾으신 "<span>{{ input_val }}</span>"의 결과입니다.</p>
                     {% comment %} Naver Webtoon {% endcomment %}
-                    <p>네이버 웹툰</p>
-                    <div class = "platform naverWT">
+                    <p class="platform-name naverWT">네이버 웹툰</p>
+                    <div class = "platform">
                         {% for naverWT in result_data.naver_wt %}
                         <div class = "contentBox">
                             <div class="thumbnailBox">
@@ -46,8 +48,8 @@
                         {% endfor %}
                     </div>
                     {% comment %} Naver Webnovel {% endcomment %}
-                    <p>네이버 웹소설</p>
-                    <div class = "platform naverNV">
+                    <p class="platform-name naverNV">네이버 웹소설</p>
+                    <div class = "platform">
                         {% for naverNV in result_data.naver_nv %}
                         <div class = "contentBox">
                             <div class="thumbnailBox">
@@ -67,8 +69,8 @@
                         {% endfor %}
                     </div>
                     {% comment %} Daum Webtoon {% endcomment %}
-                    <p>다음 웹툰</p>
-                    <div class = "platform daumWT">
+                    <p class="platform-name daumWT">다음 웹툰</p>
+                    <div class = "platform">
                         {% for daumWT in result_data.daum_wt %}
                         <div class = "contentBox">
                             <div class="thumbnailBox">
@@ -88,8 +90,8 @@
                         {% endfor %}  
                     </div>
                     {% comment %} Netflix {% endcomment %}
-                    <p>넷플릭스</p>
-                    <div class = "platform Netflix">
+                    <p class="platform-name Netflix">넷플릭스</p>
+                    <div class = "platform">
                         {% for netfl in result_data.netflix %}
                         <div class = "contentBox">
                             <div class="thumbnailBox">

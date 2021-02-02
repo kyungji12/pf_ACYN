@@ -43,6 +43,11 @@
     left: 32%;
     top: 25%;
 }
+.mainBox .noInput {
+    padding-top: 15px;
+    color: #f55271;
+    font-size: 12px;
+}
 
 /* result.html */
 .headerLogo{
@@ -59,6 +64,7 @@
 }
 .resultData {
     padding: 25px 20px;
+    position: relative;
 }
 .resultData p {
     font-size: 20px;
@@ -66,23 +72,45 @@
     padding-left: 8px;
     margin: 20px 0 15px 0;
 }
+.resultData p > span {
+    color : #4e63a1;
+}
+.resultData .arrow-box {
+    padding: 5px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    width: fit-content;
+    margin: 35px auto;
+    color: #585858;
+}
+.resultData .arrow-box img {
+    width : 10px;
+    margin: 2px;
+    padding-right: 3px;
+}
+.resultData .platform-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+.resultData .platform-name.naverWT {
+    color: #3EAF0E;
+}
+.resultData .platform-name.naverNV {
+    color: #3EAF0E;
+}
+.resultData .platform-name.daumWT {
+    color: #e83d3d;
+}
+.resultData .platform-name.Netflix {
+    color: #f71b0b;
+}
 .platform {
     /* margin : 0 10px; */
     display: flex;
     flex-wrap: wrap;
 }
-/* .platform.naverWT {
-    background-color: slateblue;
-}
-.platform.naverNV {
-    background-color: slategray;
-}
-.platform.daumWT {
-    background-color: steelblue;
-}
-.platform.Netflix {
-    background-color: thistle;
-} */
 .platform .contentBox {
     background: #f9f9f9;
     padding: 8px;
