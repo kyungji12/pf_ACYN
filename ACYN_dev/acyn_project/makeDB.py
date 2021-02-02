@@ -126,8 +126,7 @@ def fetch_daum_webtoon_latest_data():
             daum_webtoon[daum_dict['data'][i]['title']] = {
                 'intro': daum_dict['data'][i]['introduction'],
                 'url' : 'http://webtoon.daum.net/webtoon/view/'+ daum_dict['data'][i]['nickname'],
-                # 'genre': daum_dict['data'][i]['cartoon']['genres'],
-                'genre' : list(item['name'] for item in daum_dict['data'][i]['cartoon']['genres']),
+                'genre' : (str(list(item['name'] for item in daum_dict['data'][i]['cartoon']['genres'])).replace('[', ' ').replace(']', ' ').strip()).replace("'",''),
                 'thumbnail' : daum_dict['data'][i]['thumbnailImage2']['url']
             }
 
@@ -234,6 +233,7 @@ def fetch_netflix_latest_data():
     return netflix_content
 
 if __name__ == '__main__':
+
     naver_webtoon_dict = fetch_naver_webtoon_latest_data()
     for i in naver_webtoon_dict.keys():
         NaverWebtoon(
