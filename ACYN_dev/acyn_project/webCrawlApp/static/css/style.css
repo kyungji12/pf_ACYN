@@ -1,27 +1,24 @@
 /* main.html */
 .contentWrap {
-    border : 1px solid red;
+    /* border : 1px solid red; */
 }
 
 .headerBox {
-    border : 1px solid blue;
+    /* border : 1px solid blue; */
     height: 45px;
     padding: 5px;
 }
 
 .mainBox{
-    border: 1px solid orange;
     text-align: center;
 }
 
 .logoBox {
-    /* border : 1px solid blueviolet; */
     margin: 60px 0 20px 0;
     height: 200px;
 }
 
 .inputBox {
-    /* border : 1px solid green; */
     position: relative;
     height : 45px;
     /* margin: 10px 0 38px 0; */
@@ -58,15 +55,16 @@
     height: 55px;
 }
 .resultBox {
-    border: 1px solid plum;
-    margin: 20px;
+    margin: 20px auto;
 }
 .resultData {
-    border: 3px solid skyblue;
+    padding: 25px 20px;
 }
 .resultData p {
-    font-size: 40px;
+    font-size: 20px;
     font-weight: bold;
+    padding-left: 8px;
+    margin: 20px 0 15px 0;
 }
 .platform {
     /* margin : 0 10px; */
@@ -86,21 +84,24 @@
     background-color: thistle;
 } */
 .platform .contentBox {
+    background: #f9f9f9;
     padding: 8px;
+    margin: 10px auto;
+    border-radius: 6px;
     box-sizing: border-box;
-    display: inline-box;
     line-height: 20px;
     overflow: visible;
     position: relative;
+    box-shadow: 6px 7px 10px 3px rgb(32 33 36 / 24%);
 }
 @media (min-width: 700px) {
     .platform .contentBox {
-        width: 50%;
+        width: 48%;
     }
 }
 @media (min-width: 1200px) {
     .platform .contentBox {
-    width: 33.33333%;
+    width: 32.33333%;
     }
 }
 .thumbnailBox {
@@ -108,7 +109,7 @@
     height: 110px;
     display: flex;
     padding: 8px 0;
-    background-color: #f1ebeb;
+    /* background-color: #f1ebeb; */
 }
 .thumbnailBox img {
     width: 160px;
@@ -116,12 +117,33 @@
     margin-right : 10px;
 }
 .thumbnailBox ul {
-
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .thumbnailBox ul li {
     
 }
+.thumbnailBox ul .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #595884;
+}
+.thumbnailBox ul .genre {
+    font-size: 13px;
+    color: #989898;
+    padding-top: 3px;
+}
+.thumbnailBox ul .want2visit {
+    font-size: 13px;
+    padding-top: 15px;
+    color: #656475;
+}
 .intro {
-    padding: 0 8px 8px;
-    background-color: #dcdada;
+    padding: 8px 8px;
+    background-color: #f3f0f0;
+    height: 85px;
+    overflow: scroll;
+    font-weight: 300;
+    border-radius: 3px;
+    color: #484848;
 }
