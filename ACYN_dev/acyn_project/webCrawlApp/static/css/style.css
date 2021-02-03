@@ -163,15 +163,19 @@
 }
 .nav-tab.naverWT.current {
     color: #3EAF0E;
+    border-bottom: 3px solid #3EAF0E;
 }
 .nav-tab.daumWT.current {
     color: #e83d3d;
+    border-bottom: 3px solid #e83d3d;
 }
 .nav-tab.naverNV.current {
     color: #3EAF0E;
+    border-bottom: 3px solid #3EAF0E;
 }
 .nav-tab.netflix.current {
     color: #f71b0b;
+    border-bottom: 3px solid #f71b0b;
 }
 .platform-icon {
     display: inline-block;
@@ -189,7 +193,7 @@
     margin: 0px 100px 0 133px;
 }
 .result-data {
-    padding: 0 20px 25px 20px; 
+    padding: 25px 20px; 
     position: relative;
 }
 .result-data p {
@@ -215,22 +219,6 @@
     width : 10px;
     margin: 2px;
     padding-right: 3px;
-}
-.result-data .platform-name {
-    font-size: 20px;
-    font-weight: bold;
-}
-.result-data .platform-name.naverWT {
-    color: #3EAF0E;
-}
-.result-data .platform-name.naverNV {
-    color: #3EAF0E;
-}
-.result-data .platform-name.daumWT {
-    color: #e83d3d;
-}
-.result-data .platform-name.Netflix {
-    color: #f71b0b;
 }
 .platform {
     /* margin : 0 10px; */

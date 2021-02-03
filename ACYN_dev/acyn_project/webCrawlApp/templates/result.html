@@ -7,7 +7,8 @@
     <title>💜Choocheon💜</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script type = "text/javascript" src="{% static 'js/result.js' %}"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/result.js' %}"></script>
 </head>
 <body>
     <div class = "content-wrap"> 
@@ -71,11 +72,7 @@
             <div class = "result-data">
                 {% if error.state %} {% comment %} state == True라면 찾는 컨텐츠 없으므로 {% endcomment %}
                     <p style="margin-left: 10%;">"<span>{{ input_val }}</span>"검색어와 관련된 {{ error.msg }}</p> {% comment %} 찾으시는 컨텐츠가 없습니다  {% endcomment %}
-                    {% comment %} <a class="arrow-box" href="{% url 'home' %}"><img src = "{% static 'images/arrow_left.png'%}">검색창으로 돌아가기</a> {% endcomment %}
                 {% else %} {% comment %} state == False라면 찾는 컨텐츠 있으므로 {% endcomment %}
-                {% comment %} <p>찾으신 "<span>{{ input_val }}</span>"의 결과입니다.</p> {% endcomment %}
-                    {% comment %} Naver Webtoon {% endcomment %}
-                    {% comment %} <p class="platform-name naverWT">네이버 웹툰</p> {% endcomment %}
                     <div id = "naverWT" class = "platform current">
                         {% for naverWT in result_data.naver_wt %}
                         <div class = "content-box">
@@ -100,7 +97,6 @@
                         {% endfor %}
                     </div>
                     {% comment %} Daum Webtoon {% endcomment %}
-                    {% comment %} <p class="platform-name daumWT">다음 웹툰</p> {% endcomment %}
                     <div id = "daumWT" class = "platform">
                         {% for daumWT in result_data.daum_wt %}
                         <div class = "content-box">
@@ -125,7 +121,6 @@
                         {% endfor %}  
                     </div>
                     {% comment %} Naver Webnovel {% endcomment %}
-                    {% comment %} <p class="platform-name naverNV">네이버 웹소설</p> {% endcomment %}
                     <div id = "naverNV" class = "platform">
                         {% for naverNV in result_data.naver_nv %}
                         <div class = "content-box">
@@ -150,8 +145,7 @@
                         {% endfor %}
                     </div>
                     {% comment %} Netflix {% endcomment %}
-                    {% comment %} <p class="platform-name Netflix">넷플릭스</p> {% endcomment %}
-                    <div id = "Netflix" class = "platform">
+                    <div id = "netflix" class = "platform">
                         {% for netfl in result_data.netflix %}
                         <div class = "content-box">
                             <div class="thumbnail-box">
@@ -179,19 +173,4 @@
         </div>
     </div>
 </body>
-<script>
-$(document).ready(function(){
-    $('div.nav-tab').click(function(){
-        console.log(this+"클릭");
-        
-        var tab_id = $(this).attr('data-tab');
-
-        $('div.nav-tab').removeClass('current');
-        $('div.platform').removeClass('current');
-
-        $(this).addClass('current');
-        $("#"+tab_id).addClass('current');
-    });
-});
-</script>
 </html>
