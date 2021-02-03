@@ -7,31 +7,79 @@
     <title>💜Choocheon💜</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script type = "text/javascript" src="{% static 'js/result.js' %}"></script>
 </head>
 <body>
-    <div class = "contentWrap"> 
-        <div class = "headerBox">
+    <div class = "content-wrap"> 
+        <div class = "header-box">
             <!-- header -->
-            <div class = "headerLogo">
-                <!-- 로고 -->
-                <a href="{% url 'home' %}">
-                    <img src="{% static 'images/header_logo.png' %}" alt="choochen logo image">
-                </a>
+            <div class="header-wrap">
+                <div class = "header-logo">
+                    <!-- 로고 -->
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/header_logo.png' %}" alt="choochen logo image">
+                    </a>
+                </div>
+                <form action="{% url 'result' %}" method = "POST">
+                {% csrf_token %}
+                    <div class = "header-input">
+                        <div class="input-wrap">
+                            <!-- 검색어 입력창 -->
+                            <input type="search" autocomplete="off" spellcheck="false"
+                            name="input_val" value="{{ input_val }}">
+                        </div>
+                        <button class="input-button" type="submit">
+                            <img src="{% static 'images/search_icon.png'%}" alt="search icon">
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class = "resultBox">
-            <div class = "resultData">
+        {% comment %} 탭 {% endcomment %}
+        <div class ="top-nav">
+            <div class="nav-wrap">
+                <div class="tab-wrap">
+                    <div class = "nav-tab naverWT current" data-tab = "naverWT">
+                        <span class="platform-icon">
+                            <img src="{% static 'images/naver_webtoon_icon.png'%}">
+                        </span>
+                        네이버 웹툰
+                    </div>
+                    <div class = "nav-tab daumWT" data-tab = "daumWT">
+                        <span class="platform-icon">
+                            <img src="{% static 'images/daumwebtoon_icon.png'%}">
+                        </span>
+                        다음 웹툰
+                    </div>
+                    <div class = "nav-tab naverNV" data-tab = "naverNV">
+                        <span class="platform-icon">
+                            <img src="{% static 'images/naver_webnovel_icon.png'%}">
+                        </span>
+                        네이버 웹소설
+                    </div>
+                    <div class = "nav-tab netflix" data-tab = "netflix">
+                        <span class="platform-icon">
+                            <img src="{% static 'images/netflix_icon.png'%}">
+                        </span>
+                        넷플릭스
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "result-box">
+            {% comment %} 결과 {% endcomment %}
+            <div class = "result-data">
                 {% if error.state %} {% comment %} state == True라면 찾는 컨텐츠 없으므로 {% endcomment %}
-                    <p style="text-align : center;">"<span>{{ input_val }}</span>"검색어와 관련된 {{ error.msg }}</p> {% comment %} 찾으시는 컨텐츠가 없습니다  {% endcomment %}
-                    <a class="arrow-box" href="{% url 'home' %}"><img src = "{% static 'images/arrow_left.png'%}">검색창으로 돌아가기</a>
+                    <p style="margin-left: 10%;">"<span>{{ input_val }}</span>"검색어와 관련된 {{ error.msg }}</p> {% comment %} 찾으시는 컨텐츠가 없습니다  {% endcomment %}
+                    {% comment %} <a class="arrow-box" href="{% url 'home' %}"><img src = "{% static 'images/arrow_left.png'%}">검색창으로 돌아가기</a> {% endcomment %}
                 {% else %} {% comment %} state == False라면 찾는 컨텐츠 있으므로 {% endcomment %}
-                <p>찾으신 "<span>{{ input_val }}</span>"의 결과입니다.</p>
+                {% comment %} <p>찾으신 "<span>{{ input_val }}</span>"의 결과입니다.</p> {% endcomment %}
                     {% comment %} Naver Webtoon {% endcomment %}
-                    <p class="platform-name naverWT">네이버 웹툰</p>
-                    <div class = "platform">
+                    {% comment %} <p class="platform-name naverWT">네이버 웹툰</p> {% endcomment %}
+                    <div id = "naverWT" class = "platform current">
                         {% for naverWT in result_data.naver_wt %}
-                        <div class = "contentBox">
-                            <div class="thumbnailBox">
+                        <div class = "content-box">
+                            <div class="thumbnail-box">
                                 {% if naverWT.thumbnail %}
                                     <img src = "{{naverWT.thumbnail}}">
                                 {% else %}
@@ -40,40 +88,23 @@
                                 <ul>
                                     <li class="title">{{naverWT.title}}</li>
                                     <li class="genre">{{naverWT.genre}}</li>
-                                    <li class="want2visit"><a href="{{naverWT.url}}">보러가기</a></li>
+                                    <li class="want2visit">
+                                        <a href="{{naverWT.url}}">보러가기
+                                            <img src = "{% static 'images/arrow_right.png'%}"
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="intro">{{naverWT.intro}}</div>
                         </div>
                         {% endfor %}
                     </div>
-                    {% comment %} Naver Webnovel {% endcomment %}
-                    <p class="platform-name naverNV">네이버 웹소설</p>
-                    <div class = "platform">
-                        {% for naverNV in result_data.naver_nv %}
-                        <div class = "contentBox">
-                            <div class="thumbnailBox">
-                                {% if naverNV.thumbnail %}
-                                    <img src = "{{naverNV.thumbnail}}">
-                                {% else %}
-                                    <img src = "{% static 'images/naver_series_logo.png' %}">
-                                {% endif %}
-                                <ul>
-                                    <li class="title">{{naverNV.title}}</li>
-                                    <li class="genre">{{naverNV.genre}}</li>
-                                    <li class="want2visit"><a href="{{naverNV.url}}">보러가기</a></li>
-                                </ul>
-                            </div>
-                            <div class="intro">{{naverNV.intro}}</div>
-                        </div>  
-                        {% endfor %}
-                    </div>
                     {% comment %} Daum Webtoon {% endcomment %}
-                    <p class="platform-name daumWT">다음 웹툰</p>
-                    <div class = "platform">
+                    {% comment %} <p class="platform-name daumWT">다음 웹툰</p> {% endcomment %}
+                    <div id = "daumWT" class = "platform">
                         {% for daumWT in result_data.daum_wt %}
-                        <div class = "contentBox">
-                            <div class="thumbnailBox">
+                        <div class = "content-box">
+                            <div class="thumbnail-box">
                                 {% if daumWT.thumbnail %}
                                     <img src = "{{daumWT.thumbnail}}">
                                 {% else %}
@@ -82,19 +113,48 @@
                                 <ul>
                                     <li class="title">{{daumWT.title}}</li>
                                     <li class="genre">{{daumWT.genre}}</li>
-                                    <li class="want2visit"><a href="{{daumWT.url}}">보러가기</a></li>
+                                    <li class="want2visit">
+                                        <a href="{{daumWT.url}}">보러가기
+                                            <img src = "{% static 'images/arrow_right.png'%}"
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="intro">{{daumWT.intro}}</div>
                         </div>  
                         {% endfor %}  
                     </div>
+                    {% comment %} Naver Webnovel {% endcomment %}
+                    {% comment %} <p class="platform-name naverNV">네이버 웹소설</p> {% endcomment %}
+                    <div id = "naverNV" class = "platform">
+                        {% for naverNV in result_data.naver_nv %}
+                        <div class = "content-box">
+                            <div class="thumbnail-box">
+                                {% if naverNV.thumbnail %}
+                                    <img src = "{{naverNV.thumbnail}}">
+                                {% else %}
+                                    <img src = "{% static 'images/naver_series_logo.png' %}">
+                                {% endif %}
+                                <ul>
+                                    <li class="title">{{naverNV.title}}</li>
+                                    <li class="genre">{{naverNV.genre}}</li>
+                                    <li class="want2visit">
+                                        <a href="{{naverNV.url}}">보러가기
+                                            <img src = "{% static 'images/arrow_right.png'%}"
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="intro">{{naverNV.intro}}</div>
+                        </div>  
+                        {% endfor %}
+                    </div>
                     {% comment %} Netflix {% endcomment %}
-                    <p class="platform-name Netflix">넷플릭스</p>
-                    <div class = "platform">
+                    {% comment %} <p class="platform-name Netflix">넷플릭스</p> {% endcomment %}
+                    <div id = "Netflix" class = "platform">
                         {% for netfl in result_data.netflix %}
-                        <div class = "contentBox">
-                            <div class="thumbnailBox">
+                        <div class = "content-box">
+                            <div class="thumbnail-box">
                                 {% if netfl.thumbnail %}
                                     <img src = "{{netfl.thumbnail}}">
                                 {% else %}
@@ -103,7 +163,11 @@
                                 <ul>
                                     <li class="title">{{netfl.title}}</li>
                                     <li class="genre">{{netfl.genre}}</li>
-                                    <li class="want2visit"><a href="{{netfl.url}}">보러가기</a></li>
+                                    <li class="want2visit">
+                                        <a href="{{netfl.url}}">보러가기
+                                            <img src = "{% static 'images/arrow_right.png'%}"
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="intro">{{netfl.intro}}</div>
@@ -115,4 +179,19 @@
         </div>
     </div>
 </body>
+<script>
+$(document).ready(function(){
+    $('div.nav-tab').click(function(){
+        console.log(this+"클릭");
+        
+        var tab_id = $(this).attr('data-tab');
+
+        $('div.nav-tab').removeClass('current');
+        $('div.platform').removeClass('current');
+
+        $(this).addClass('current');
+        $("#"+tab_id).addClass('current');
+    });
+});
+</script>
 </html>

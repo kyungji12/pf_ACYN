@@ -9,12 +9,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class = "contentBox"> 
-        <div class = "headerBox">
+    <div class = "content-wrap"> 
+        <div class = "header-box">
             <!-- header -->
         </div>
-        <div class = "mainBox">
-            <div class = "logoBox">
+        <div class = "main-box">
+            <div class = "logo-box">
                 <!-- 로고 -->
                 <a href="{% url 'home' %}">
                     <img src="{% static 'images/logo.png'%}" alt="choochen logo image">
@@ -22,7 +22,7 @@
             </div>
             <form action="{% url 'result' %}" method = "POST">
             {% csrf_token %}
-                <div class = "inputBox">
+                <div class = "input-box">
                     <!-- 검색어 입력창 -->
                     <input type="search" autocomplete="off" spellcheck="false"
                     placeholder="Choocheon 검색어 입력" name="input_val">

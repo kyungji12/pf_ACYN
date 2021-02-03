@@ -1,30 +1,35 @@
 /* main.html */
-.contentWrap {
+.content-wrap {
     /* border : 1px solid red; */
 }
 
-.headerBox {
+.header-box {
     /* border : 1px solid blue; */
     height: 45px;
-    padding: 5px;
+    display: block;
+    min-width: 1261px;
+    width: 100%;
+    z-index: 100;
+    position: absolute;
+    top: 20px;
 }
 
-.mainBox{
+.main-box{
     text-align: center;
 }
 
-.logoBox {
+.logo-box {
     margin: 60px 0 20px 0;
     height: 200px;
 }
 
-.inputBox {
+.input-box {
     position: relative;
     height : 45px;
     /* margin: 10px 0 38px 0; */
 }
 
-.inputBox input {
+.input-box input {
     border-radius: 20px;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
     border: none;
@@ -32,50 +37,171 @@
     height: 100%;
     outline: none;
     padding-inline-end: 40px;
-    padding-inline-start: 52px;
+    padding-inline-start: 60px;
     position: relative;
     width: 40%;
 }
 
-.inputBox img {
+.input-box img {
     width: 24px;
     position: absolute;
     left: 32%;
     top: 25%;
 }
-.mainBox .noInput {
+.main-box .noInput {
     padding-top: 15px;
     color: #f55271;
     font-size: 12px;
 }
 
 /* result.html */
-.headerLogo{
-   position: relative;
+.header-wrap {
+    position: relative;
+    margin: 0 auto;
+    margin-left: 133px;
+    width: 692px;
+    padding-left: 27px;
+    height: 45px;
 }
-.headerLogo a {
-    position: absolute;
+.header-logo {
+   /* position: relative; */
+   position: absolute;
+   left: -139px;
+   padding: 0 28px 0 30px;
+   /* top: 4px; */
 }
-.headerLogo a img {
-    height: 55px;
+.header-logo a {
+    /* position: absolute; */
+    position: relative;
+    overflow: hidden;
+    display: block;
 }
-.resultBox {
-    margin: 20px auto;
+.header-logo a img {
+    height: 45px;
+    margin: auto;
 }
-.resultData {
-    padding: 25px 20px;
+.header-input {
+    /* position: relative;
+    height : 45px;
+    margin: 10px 0 38px 0; */
+    display: flex;
+    height: 45px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    box-shadow: none;
+    /* width: 690px; */
+    width: 765px;
+    z-index: 3;
+    margin: 0 auto;
+}
+.input-wrap {
+    flex: 1;
+    display: flex;
+    padding: 5px 4px 0 16px;
+    padding-left: 20px;
+    /* flex-wrap: wrap; */
+}
+.input-wrap input {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    color: rgba(0,0,0,.87);
+    outline: none;
+    display: flex;
+    flex: 100%;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: -2px;
+    font-size: 16px;
+    height: 100%;
+}
+.input-button {
+    flex: 0 0 auto;
+    height: 45px;
+    width: 45px;
+    border: none;
+    cursor: pointer;
+    padding: 0 13px 0 0;
+    margin: 0;
+    background: transparent;
+}
+.input-button img {
+    height: 25px;
+    width: 25px;
+    margin: auto;
+}
+/* 탭 */
+.top-nav {
+    min-width: 1261px;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+    color: #70757a;
+    background: #fff;
+    z-index: 100;
+    margin-top: 68px;
+}
+.nav-wrap {
+    position: relative;
+    min-width: 832px;
+    height: 56px;
+    z-index: 100;
+    padding: 0;
+    font-size: 15px;
+}
+.tab-wrap {
+    display: inline;
+    margin-left: 151px;
+}
+.tab-wrap .nav-tab {
+    color: #5f6368;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 12px 12px 10px;
+    height: 16px;
+    line-height: 16px;
+    margin: 11px 1px 0;
+    cursor: pointer;
+}
+.nav-tab.naverWT.current {
+    color: #3EAF0E;
+}
+.nav-tab.daumWT.current {
+    color: #e83d3d;
+}
+.nav-tab.naverNV.current {
+    color: #3EAF0E;
+}
+.nav-tab.netflix.current {
+    color: #f71b0b;
+}
+.platform-icon {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: text-bottom;
+    width: 21px;
+}
+.platform-icon img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+/* 결과영역 */
+.result-box {
+    margin: 0px 100px 0 133px;
+}
+.result-data {
+    padding: 0 20px 25px 20px; 
     position: relative;
 }
-.resultData p {
+.result-data p {
     font-size: 20px;
     font-weight: bold;
     padding-left: 8px;
     margin: 20px 0 15px 0;
 }
-.resultData p > span {
+.result-data p > span {
     color : #4e63a1;
 }
-.resultData .arrow-box {
+.result-data .arrow-box {
     padding: 5px;
     border: 1px solid darkgray;
     border-radius: 5px;
@@ -85,25 +211,25 @@
     margin: 35px auto;
     color: #585858;
 }
-.resultData .arrow-box img {
+.result-data .arrow-box img {
     width : 10px;
     margin: 2px;
     padding-right: 3px;
 }
-.resultData .platform-name {
+.result-data .platform-name {
     font-size: 20px;
     font-weight: bold;
 }
-.resultData .platform-name.naverWT {
+.result-data .platform-name.naverWT {
     color: #3EAF0E;
 }
-.resultData .platform-name.naverNV {
+.result-data .platform-name.naverNV {
     color: #3EAF0E;
 }
-.resultData .platform-name.daumWT {
+.result-data .platform-name.daumWT {
     color: #e83d3d;
 }
-.resultData .platform-name.Netflix {
+.result-data .platform-name.Netflix {
     color: #f71b0b;
 }
 .platform {
@@ -111,7 +237,8 @@
     display: flex;
     flex-wrap: wrap;
 }
-.platform .contentBox {
+.platform .content-box {
+    display: none;
     background: #f9f9f9;
     padding: 8px;
     margin: 10px auto;
@@ -123,48 +250,62 @@
     box-shadow: 6px 7px 10px 3px rgb(32 33 36 / 24%);
 }
 @media (min-width: 700px) {
-    .platform .contentBox {
+    .platform .content-box {
         width: 48%;
     }
 }
 @media (min-width: 1200px) {
-    .platform .contentBox {
+    .platform .content-box {
     width: 32.33333%;
     }
 }
-.thumbnailBox {
+.platform.current .content-box {
+    display: block;
+}
+.thumbnail-box {
     position: relative;
     height: 110px;
     display: flex;
     padding: 8px 0;
     /* background-color: #f1ebeb; */
 }
-.thumbnailBox img {
+.thumbnail-box img {
     width: 160px;
     height: 100%;
     margin-right : 10px;
 }
-.thumbnailBox ul {
+.thumbnail-box ul {
     margin-top: auto;
     margin-bottom: auto;
 }
-.thumbnailBox ul li {
+.thumbnail-box ul li {
     
 }
-.thumbnailBox ul .title {
+.thumbnail-box ul .title {
     font-size: 20px;
     font-weight: 500;
     color: #595884;
 }
-.thumbnailBox ul .genre {
+.thumbnail-box ul .genre {
     font-size: 13px;
     color: #989898;
     padding-top: 3px;
 }
-.thumbnailBox ul .want2visit {
+.thumbnail-box ul .want2visit {
     font-size: 13px;
     padding-top: 15px;
     color: #656475;
+    position: relative;
+}
+.thumbnail-box ul .want2visit img {
+    width: 15px;
+    height: 15px;
+    margin-right: 0;
+    opacity: 0.7;
+    position: absolute;
+    top: 17px;
+    filter: alpha(opacity=70);
+    left: 52px;
 }
 .intro {
     padding: 8px 8px;
