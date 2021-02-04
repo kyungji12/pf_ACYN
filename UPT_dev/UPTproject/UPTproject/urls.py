@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from pose_app import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', views.home, name="home"),
+    path('desc/', views.desc, name="desc"),
+    path('workout/', views.workout, name="workout"),
+    path('result/', views.result, name="result")
 ]
