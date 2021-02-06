@@ -13,3 +13,9 @@ def workout(request):
 
 def result(request):
     return render(request, 'result.html')
+
+
+
+
+def video_test(request):
+    return render(request, 'video_test.html')
