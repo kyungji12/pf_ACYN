@@ -4,11 +4,11 @@ let video = document.getElementById('video');
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext("2d");
 
-let noseX = 0;
-let noseY = 0;
+// let noseX = 0;
+// let noseY = 0;
 
-let eyelX = 0; //왼쪽 눈 X
-let eyelY = 0; //왼쪽 눈 Y
+// let eyelX = 0; //왼쪽 눈 X
+// let eyelY = 0; //왼쪽 눈 Y
 
 // let poses = [];
 
