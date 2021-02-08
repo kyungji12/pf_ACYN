@@ -27,4 +27,5 @@ urlpatterns = [
     path('result/', views.result, name="result"),
 
     path('video_test/', views.video_test, name="video_test"),
+    path('video_test2/', views.video_test2, name="video_test2"),
 ]

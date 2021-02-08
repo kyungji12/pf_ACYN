@@ -19,3 +19,6 @@ def result(request):
 
 def video_test(request):
     return render(request, 'video_test.html')
+
+def video_test2(request):
+    return render(request, 'video_test2.html')
