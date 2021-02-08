@@ -14,7 +14,7 @@
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- p5 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
     <!-- ml5 -->
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
   </head>
@@ -80,8 +80,8 @@
                 <div class="col-md-6">
                    <!-- <img src="{% static 'images/img_desc_1.png' %}" alt="사용법 설명 이미지"> -->
                    <div id = "videoCanvas">
-                    <canvas id="canvas" width="640" height="480"></canvas> 
-                    <video id="video" width="640" height="480" autoplay style="display: none"></video>
+                      <canvas id="canvas" width="640" height="400"></canvas> 
+                      <video id="video" width="640" height="400" autoplay style="display: none"></video>
                    </div>
                 </div>
              </div>
@@ -101,6 +101,6 @@
         </div>
       </div>
     </footer>
-    <script type="text/javascript" src="{% static 'js/ml5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ml5_video.js' %}"></script>
   </body>
 </html>

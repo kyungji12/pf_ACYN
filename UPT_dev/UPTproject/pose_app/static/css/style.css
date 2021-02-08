@@ -304,10 +304,9 @@ body {
     box-shadow: inset 0 0 0 3px #a3a9e7;
     color: #a3a9e7 !important;
   }
-  .desc-section #videoCanvas {
+  #videoCanvas {
     width: 640px;
-    height: 480px;
-    border: 1px solid blue;
+    height: 400px;
   }
 
 

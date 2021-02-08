@@ -13,16 +13,12 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       video.srcObject = stream;
       video.play();
     });
-    //   navigator.mediaDevices.getUserMedia({ video: false }).catch(function(err) {
-    //   // 오류 처리
-    //   alert("비디오 권한을 사용하지 않으면 UPT 서비스를 이용할 수 없습니다.");
-    // });
   }
 
 //그림을 그릴 수 있는 canvas안에 video 위치시키기
 function drawCameraIntoCanvas(){
 // draw the video element into the canvas
-    ctx.drawImage(video, 0,0, 640, 480);
+    ctx.drawImage(video, 0,0, 640, 400);
 // We can call both functions to draw all keypoints and the skeletons
     drawKeypoints();
     drawSkeleton();
@@ -54,11 +50,6 @@ function modelReady(){
 function drawKeypoints(){
 //console.log("drawKeypoints");
     if (pose) { //이거 없으면 오류나니까 빼지말기
-        // //원근감
-        // let eyeR = pose.rightEye;
-        // let eyeL = pose.leftEye;
-        // let distance = dist(eyeR.x, eyeR.y, eyeL.x, eyeL.y);
-
         //Loop through all the poses detected
         for (let i = 0; i < pose.keypoints.length; i ++) {
             let keypoint = pose.keypoints[i];
