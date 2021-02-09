@@ -1,8 +1,5 @@
 //This javascript is for singlePose 
-
-let canvas = document.getElementById("canvas");
-let video = document.getElementById("video");
-let ctx = canvas.getContext("2d");
+let video;
 let poseNet;
 let pose ;
 let skeleton ; 
@@ -12,16 +9,6 @@ let poseLabel = "";
 
 let state = 'waiting';
 let targetLabel;
-
-// let stopBtn = document.getElementsById("stopBtn");
-
-// create video
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-      video.srcObject = stream;
-      video.play();
-    });
-}
 
 function keyPressed(){
     if (key == 't') {
@@ -40,33 +27,25 @@ function keyPressed(){
             setTimeout(function(){
                 console.log('not collecting');
                 state = 'waiting';
-            },1000);
+            },2000);
         },1000);
     }
 }
+function setup(){
+    createCanvas(640, 480);
+    video = createCapture(VIDEO);
+    video.hide();
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose', gotPoses);
 
-function drawCameraIntoCanvas(){ //setUp()
-    ctx.drawImage(video, 0,0, 640, 480);
-
-    draw();
-    // drawKeypoints();
-    // drawSkeleton();
-
-    window.requestAnimationFrame(drawCameraIntoCanvas);
-    
     let options = {
-        inputs: 34, //17개의 부위 x,y 각 두개씩 -> 총 34개
-        outputs: 34, //플랭크포즈 1개
+        inputs: 34,
+        outputs: 1,
         task: 'classification',
         debug: true
     }
     brain = ml5.neuralNetwork(options);
-
-    // brain.loadData('test.json', dataReady);
 }
-drawCameraIntoCanvas();
-poseNet = ml5.poseNet(video, modelReady);
-poseNet.on('pose', gotPoses);
 
 function brainLoaded(){
     console.log('pose classification ready');
@@ -119,77 +98,64 @@ function gotPoses(poses){
                 inputs.push(X);
                 inputs.push(Y);
             }
-            let target = [targetLabel];
-            brain.addData(inputs, inputs);
+            // let target = [targetLabel];
+            let outputs = [];
+            outputs = inputs;
+            brain.addData(inputs, outputs);
             // console.log(i,"💜",inputs);
         }
     }
 }
-function modelReady(){
-    console.log("model ready");
-    poseNet.singlePose(video);
+function modelLoaded(){
+    console.log("poseNet ready");
+    // poseNet.singlePose(video);
 }
 function draw(){
-    // push();
-    // translate(video.width, 0);
-    // scale(-1, 1);
-    // ctx.drawImage(video, 0, 0, video.width, video.height);
+    push();
+    translate(video.width, 0);
+    scale(-1, 1);
+    image(video, 0, 0, video.width, video.height);
 
-    if (pose) { 
-        for (let i = 0; i < pose.keypoints.length; i++) {
-            let keypoint = pose.keypoints[i];
-            let X = keypoint.position.x;
-            let Y = keypoint.position.y;
-            if (keypoint.score > 0.2) {
-                ctx.fillStyle = 'lavender';
-                ctx.beginPath();
-                ctx.arc(X,Y, 10, 0, 2*Math.PI);
-                ctx.fill();
+    drawKeypoints();
+    drawSkeleton();
+    pop();
+}
+
+function drawKeypoints(){
+    //console.log("drawKeypoints");
+        if (pose) {
+            for (let i = 0; i < pose.keypoints.length; i ++) {
+                let keypoint = pose.keypoints[i];
+                let X = keypoint.position.x;
+                let Y = keypoint.position.y;
+                if (keypoint.score > 0.2) {
+                    // ctx.fillStyle = 'lavender';
+                    // ctx.beginPath();
+                    // ctx.arc(X,Y, 10, 0, 2*Math.PI);
+                    // ctx.fill();
+                    fill('lavender');
+                    stroke('lavender');
+                    ellipse(X, Y, 16, 16);
+                }
             }
         }
     }
-    if (skeleton) {
-        for (let i = 0; i < skeleton.length; i++) {
-            let partA = skeleton[i][0];
-            let partB = skeleton[i][1];
-            ctx.strokeStyle = 'lavender';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(partA.position.x, partA.position.y);
-            ctx.lineTo(partB.position.x, partB.position.y);
-            // ctx.lineTo(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
-            ctx.stroke();
+    function drawSkeleton() {
+    //console.log("drawSkeleton");
+        if (skeleton) {
+            for (let i = 0; i < skeleton.length; i ++) {
+                let partA = skeleton[i][0];
+                let partB = skeleton[i][1];
+                // ctx.strokeStyle = 'lavender';
+                // ctx.lineWidth = 2;
+                // ctx.beginPath();
+                // ctx.moveTo(partA.position.x, partA.position.y);
+                // ctx.lineTo(partB.position.x, partB.position.y);
+                // // ctx.lineTo(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
+                // ctx.stroke();
+                strokeWeight(2);
+                stroke('lavender');
+                line(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
+            }
         }
     }
-    // pop();
-}
-// function drawKeypoints(){
-//     if (pose) { 
-//         for (let i = 0; i < pose.keypoints.length; i++) {
-//             let keypoint = pose.keypoints[i];
-//             let X = keypoint.position.x;
-//             let Y = keypoint.position.y;
-//             if (keypoint.score > 0.2) {
-//                 ctx.fillStyle = 'lavender';
-//                 ctx.beginPath();
-//                 ctx.arc(X,Y, 10, 0, 2*Math.PI);
-//                 ctx.fill();
-//             }
-//         }
-//     }
-// }
-// function drawSkeleton() {
-//     if (skeleton) {
-//         for (let i = 0; i < skeleton.length; i++) {
-//             let partA = skeleton[i][0];
-//             let partB = skeleton[i][1];
-//             ctx.strokeStyle = 'lavender';
-//             ctx.lineWidth = 2;
-//             ctx.beginPath();
-//             ctx.moveTo(partA.position.x, partA.position.y);
-//             ctx.lineTo(partB.position.x, partB.position.y);
-//             // ctx.lineTo(partA.position.x, partA.position.y, partB.position.x, partB.position.y);
-//             ctx.stroke();
-//         }
-//     }
-// }
