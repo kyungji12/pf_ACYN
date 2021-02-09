@@ -241,23 +241,17 @@ function modelReady(){
     // poseNet.singlePose(video);
 }
 function draw(){
-    // console.log(video.width);
     // drawCameraIntoCanvas();
     // push();
-    // ctx.scale(-1, 1);
-    // ctx.translate(-video.width, 0);
-
+    // console.log(video.width);
+    ctx.save();
+    ctx.scale(-1, 1);
+    ctx.translate(-video.width, 0);
     ctx.drawImage(video, 0,0, 640, 480);
-    // ctx.restore();
     drawKeypoints();
     drawSkeleton();
+    ctx.restore();
     // pop();
-
-    // ctx.save();
-    //   ctx.scale(-1, 1);
-    //   ctx.translate(-videoWidth, 0);
-    //   ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
-    //   ctx.restore();
 }
 function drawKeypoints(){
     if (pose) { 
