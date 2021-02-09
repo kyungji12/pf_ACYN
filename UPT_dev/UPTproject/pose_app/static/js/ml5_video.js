@@ -3,54 +3,38 @@
 let canvas = document.getElementById("canvas");
 let video = document.getElementById("video");
 let ctx = canvas.getContext("2d");
-
 let pose ;
 let skeleton ; 
 
-// create video
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
       video.srcObject = stream;
       video.play();
     });
   }
-
-//그림을 그릴 수 있는 canvas안에 video 위치시키기
 function drawCameraIntoCanvas(){
-// draw the video element into the canvas
     ctx.drawImage(video, 0,0, 640, 400);
-// We can call both functions to draw all keypoints and the skeletons
     drawKeypoints();
     drawSkeleton();
-
     window.requestAnimationFrame(drawCameraIntoCanvas);
 }
-//Loop over the drawCameraIntoCanvas function
 drawCameraIntoCanvas();
 
-//Create a new poseNet methode with a single detection 
 let poseNet = ml5.poseNet(video, modelReady);
-//An event listener that returns the results when a pose is detected. 
 poseNet.on('pose', gotPoses);
 
-//A function that gets called every time there's an update from the model
 function gotPoses(poses){
-    // console.log(poses);
     if (poses.length > 0) {
         pose = poses[0].pose;
         skeleton = poses[0].skeleton;
     }
-
 }
 function modelReady(){
     console.log("model ready");
     poseNet.singlePose(video);
 }
-// A function to draw ellipses over the detected keypoints
 function drawKeypoints(){
-//console.log("drawKeypoints");
     if (pose) { //이거 없으면 오류나니까 빼지말기
-        //Loop through all the poses detected
         for (let i = 0; i < pose.keypoints.length; i ++) {
             let keypoint = pose.keypoints[i];
             let X = keypoint.position.x;
@@ -64,11 +48,8 @@ function drawKeypoints(){
         }
     }
 }
-// A function to draw the skeletons
 function drawSkeleton() {
-//console.log("drawSkeleton");
     if (skeleton) {
-        //Loop throuth all the skeletons detected
         for (let i = 0; i < skeleton.length; i ++) {
             let partA = skeleton[i][0];
             let partB = skeleton[i][1];
