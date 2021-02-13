@@ -3,8 +3,15 @@
 let canvas = document.getElementById("canvas");
 let video = document.getElementById("video");
 let ctx = canvas.getContext("2d");
+
 let pose ;
 let skeleton ; 
+
+let brain;
+let poseLabel = "";
+
+let state = 'waiting';
+let targetLabel;
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
@@ -12,29 +19,117 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       video.play();
     });
   }
-function drawCameraIntoCanvas(){
-    ctx.drawImage(video, 0,0, 640, 400);
-    drawKeypoints();
-    drawSkeleton();
-    window.requestAnimationFrame(drawCameraIntoCanvas);
+  function keyPressed(){
+    if (key == 't') {
+        brain.normalizeData();
+        brain.train({
+            epochs: 10
+        }, finished);
+    } else if (key == 's') {
+        brain.saveData('test-data');
+    } else {
+        targetLabel = key;
+        console.log(targetLabel);
+        setTimeout(function(){
+            console.log('collecting');
+            state = 'collecting';
+            setTimeout(function(){
+                console.log('not collecting');
+                state = 'waiting';
+            },2000);
+        },1000);
+    }
 }
-drawCameraIntoCanvas();
 
-let poseNet = ml5.poseNet(video, modelReady);
-poseNet.on('pose', gotPoses);
+function setup(){
+    // video.hide();
+    let poseNet = ml5.poseNet(video, modelReady);
+    poseNet.on('pose', gotPoses);
 
+    let options = {
+        inputs: 34,
+        outputs: 1,
+        task: 'classification',
+        debug: true
+    }
+    brain = ml5.neuralNetwork(options);
+}
+function brainLoaded(){
+    console.log('pose classification ready');
+    classifyPose();
+}
+function classifyPose(){
+    if (pose){
+        let inputs = [];
+        for (let i = 0; i < pose.keypoints.length; i++) {
+            let keypoint = pose.keypoints[i];
+            let X = keypoint.position.x;
+            let Y = keypoint.position.y;
+            inputs.push(X);
+            inputs.push(Y);
+        }
+        brain.classfiy(inputs, gotResult);
+    } else {
+        setTimeout(classifyPose, 100);
+    }   
+}
+function gotResult(error, results) {
+    if (results[0].confidence > 0.75){
+        poseLabel = results[0].label.toUpperCase();
+    }
+    classifyPose();
+}
+
+function dataReady(){
+    brain.normalizeData();
+    brain.train({
+        epochs: 10
+    }, finished);
+}
+function finished(){
+    console.log('model trained');
+    brain.save();
+    classifyPose();
+}
 function gotPoses(poses){
+    // console.log(poses);
     if (poses.length > 0) {
         pose = poses[0].pose;
         skeleton = poses[0].skeleton;
+        if (state == 'collecting') {
+            let inputs = [];
+            for (let i = 0; i < pose.keypoints.length; i++) {
+                let keypoint = pose.keypoints[i];
+                let X = keypoint.position.x;
+                let Y = keypoint.position.y;
+                inputs.push(X);
+                inputs.push(Y);
+            }
+            // let target = [targetLabel];
+            let outputs = [];
+            outputs = inputs;
+            brain.addData(inputs, outputs);
+        }
     }
 }
 function modelReady(){
     console.log("model ready");
-    poseNet.singlePose(video);
+}
+function draw(){
+    // drawCameraIntoCanvas();
+    // push();
+    // console.log(video.width);
+    ctx.save();
+    ctx.scale(-1, 1);
+    ctx.translate(-video.width, 0);
+    ctx.drawImage(video, 0,0, 640, 480);
+    drawKeypoints();
+    drawSkeleton();
+    ctx.restore();
+    // pop();
 }
 function drawKeypoints(){
-    if (pose) { //이거 없으면 오류나니까 빼지말기
+    if (pose) { 
         for (let i = 0; i < pose.keypoints.length; i ++) {
             let keypoint = pose.keypoints[i];
             let X = keypoint.position.x;
