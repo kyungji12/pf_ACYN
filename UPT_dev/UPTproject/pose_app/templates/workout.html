@@ -61,23 +61,26 @@
       <div class="container">
           <section class="desc-section">
               <div class="row">
-                <div class="col-md-6 text-left col-z-index">
-                    <div class="ready-section">
+                <div class="col-md-4 text-left col-z-index">
+                    <div class="ready-section" id ="readySection">
                         <h1 class="title">자세를 <br>맞춰주세요.</h1>
                     </div>
-                    <div class="stop-section">
+                    <div class="workout-section" id ="workoutSection">
                         <h1 class="title">OK!</h1>
+                    </div>
+                    <div class="stop-section" id = "stopSection">
+                        <h1 class="title">STOP!</h1>
                         <ul class="desc">
-                            <li>운동을 시작하세요!</li>
+                            <li>자세를 풀어주세요!</li>
                             <li>
                                 <a href="{% url 'result' %}" class="move-btn">
-                                STOP
+                                분석하기
                                 </a>
                             </li>
                         </ul>
                     </div>                    
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                    <!-- <img src="{% static 'images/img_desc_1.png' %}" alt="사용법 설명 이미지"> -->
                    <div id = "videoCanvas">
                       <canvas id="canvas" width="640" height="400"></canvas> 

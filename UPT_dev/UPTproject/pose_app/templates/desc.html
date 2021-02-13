@@ -60,17 +60,22 @@
                 <div class="col-md-6 text-left col-z-index">
                     <h1 class="title">사용 방법</h1>
                     <ul class="desc">
-                        <li>1. 아래 시작하기 버튼을 눌러주세요</li>
+                        <!-- <li>1. 아래 시작하기 버튼을 눌러주세요</li>
                         <li>2. 화면 안에 있는 세 점에 머리, 어깨, 다리를 맞춰주세요.</li>
                         <li>3. 화면에 OK사인이 뜨면 운동을 시작해주세요.</li>
                         <li>4. 운동이 끝나면 종료 버튼을 눌러주세요.</li>
-                        <li>5. 잠시 후 오늘 운동에 대한 결과가 도착합니다. </li>
+                        <li>5. 잠시 후 오늘 운동에 대한 결과가 도착합니다. </li> -->
+                        <li>1. 아래 START 버튼을 누르면 자세를 취할 준비시간이 10초 주어집니다. </li>
+                        <li>2. OK 사인이 뜨면 운동 자세를 취하고 10초간 유지해주세요.</li>
+                        <li>3. 자세를 풀어도 좋습니다.</li>
+                        <li>4. 분석 버튼을 눌러주세요. 잠시 후 운동에 대한 결과가 도착합니다. </li>
+                        <li><span>* 귀가 보이도록 긴 머리는 묶는걸 권장합니다.</span></li>
                         <li>
                             <a href="{% url 'workout' %}" class="move-btn">
                              {% comment %} workout.html  {% endcomment %}
                               START
                             </a>
-                          </li>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-md-6">

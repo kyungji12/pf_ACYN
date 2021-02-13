@@ -282,6 +282,15 @@ body {
   .desc-section .desc li:last-child {
     margin: 3rem 0;
   }
+  .desc-section .desc li span {
+    font-size : 12px;
+    color: #ce4747;
+  }  
+  .desc-section .desc .timer {
+    color: #ce4747;
+    font-size: 20px;
+    font-weight: 500;
+  }
   .desc-section .desc .move-btn {
     vertical-align: middle;
     background-color: transparent;
@@ -307,8 +316,11 @@ body {
   #videoCanvas {
     width: 640px;
     height: 400px;
+    margin-left: auto;
   }
-
+  .workout-section, .stop-section {
+    display: none;
+  }
 
   /* Add animation to "result-section" */
   .result-section {
