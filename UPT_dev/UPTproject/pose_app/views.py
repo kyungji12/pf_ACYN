@@ -1,5 +1,6 @@
 from django.shortcuts import render #html파일에 원하는 context인자를 보낼 수 있음
 from django.shortcuts import redirect #url만 이동하는 것
+import json
 
 # Create your views here.
 def home(request):
@@ -12,6 +13,10 @@ def workout(request):
     return render(request, 'workout.html')
 
 def result(request):
+    if request.method == 'POST':
+        result_data = json.load(request.body)
+        print(result_data)
+        # result_data = requests.
     return render(request, 'result.html')
 
 

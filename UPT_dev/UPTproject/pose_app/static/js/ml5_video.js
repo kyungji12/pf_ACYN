@@ -6,11 +6,8 @@ let ctx = canvas.getContext("2d");
 let pose ;
 let skeleton ; 
 
-let brain;
-let poseLabel = "";
-
 let state = 'waiting';
-let targetLabel;
+let pose_results = [];
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
@@ -68,6 +65,10 @@ let countDown = setInterval(function(){
         stopSection.style.display = "block";
         video.pause();
 
+        $('#stopBtn').click(function(){
+            sendJson();
+        });
+
     } else if (0 < timeLeft && timeLeft <= 5) {
         state = 'collecting';
         console.log("운동시간", state);
@@ -94,32 +95,48 @@ function gotPoses(poses){
         skeleton = poses[0].skeleton;
         if (state == 'collecting') {
             // console.log(pose);
-            let results = [];
+            // let pose_results = [];
             for (let i = 0; i < pose.keypoints.length; i++) {
                 let keypoint = pose.keypoints[i];
                 let X = keypoint.position.x;
                 let Y = keypoint.position.y;
                 let score = keypoint.score ;
                 if (score < 0.5 ) {
-                    results.push("NaN");
-                    results.push("NaN");
+                    pose_results.push("NaN");
+                    pose_results.push("NaN");
                     // console.log("NaN",keypoint.part,i,score, X);
                     // console.log("NaN",keypoint.part,i,score, Y);
                 } else {
-                    results.push(X);
-                    results.push(Y);
+                    pose_results.push(X);
+                    pose_results.push(Y);
                     // console.log(keypoint.part,i,score, X);
                     // console.log(keypoint.part,i,score, Y);
                 }
                 // console.log(i , "-score: ",score);
             }
-            // results 보내기
-            // console.log(results);
+            // pose_results 보내기
+            // console.log(pose_results);
         }
     }
 }
 function sendJson(){
-    
+    $.ajax({
+        type: "POST",
+        url: "/result/",
+        dataType: "json",
+        data: JSON.stringify(pose_results),
+        contentType: "application/json;charset=UTF-8",
+        success: function (data, response) {
+          console.log("response");
+          console.log(data);
+        //   $(".title").text("");
+        //   $(".desc").text("");
+        //   $(".desc").text(data);
+        },
+        error: function (jqXHR, status, error) {
+          console.log(status, error);
+        },
+    });
 }
 function modelReady(){
     console.log("model ready");
