@@ -93,18 +93,33 @@ function gotPoses(poses){
         pose = poses[0].pose;
         skeleton = poses[0].skeleton;
         if (state == 'collecting') {
+            // console.log(pose);
             let results = [];
             for (let i = 0; i < pose.keypoints.length; i++) {
                 let keypoint = pose.keypoints[i];
                 let X = keypoint.position.x;
                 let Y = keypoint.position.y;
-                results.push(X);
-                results.push(Y);
+                let score = keypoint.score ;
+                if (score < 0.5 ) {
+                    results.push("NaN");
+                    results.push("NaN");
+                    // console.log("NaN",keypoint.part,i,score, X);
+                    // console.log("NaN",keypoint.part,i,score, Y);
+                } else {
+                    results.push(X);
+                    results.push(Y);
+                    // console.log(keypoint.part,i,score, X);
+                    // console.log(keypoint.part,i,score, Y);
+                }
+                // console.log(i , "-score: ",score);
             }
             // results 보내기
-            console.log(results);
+            // console.log(results);
         }
     }
+}
+function sendJson(){
+    
 }
 function modelReady(){
     console.log("model ready");
