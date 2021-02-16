@@ -7,6 +7,11 @@ verify_ssl = true
 
 [packages]
 django = "*"
+numpy = "*"
+pandas = "*"
+matplotlib = "*"
+sklearn = "*"
+xgboost = "*"
 
 [requires]
 python_version = "3.8"

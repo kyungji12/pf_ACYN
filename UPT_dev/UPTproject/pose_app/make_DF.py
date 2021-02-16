@@ -6,8 +6,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from xgboost import XGBClassifier
-from xgboost import plot_importance
+# from xgboost import XGBClassifier
+# from xgboost import plot_importance
 
 import pickle
 
@@ -15,9 +15,10 @@ class Model():
     def __init__(self):
         self.loaded_model = pickle.load(open("static/upt_model.pickle.dat", "rb"))
 
-    def make_data(self,df_data):
+    # def make_data(self,df_data):
+    def make_data(input_data):
         input_data = input_data[0]
-    
+        
         varX = []
         varY = []
         for i in range(len(input_data)):
@@ -36,8 +37,8 @@ class Model():
 
         return output_data
 
-    def predict(self, data):
-        result = self.make_data(data)
-        y_pred = self.loaded_model.predict(result)
+    def predict(data):
+        # result = self.make_data(data)
+        y_pred = self.loaded_model.predict(data)
         predictions = [round(value) for value in y_pred]
         return predictions
