@@ -2,6 +2,8 @@ from django.shortcuts import render #html파일에 원하는 context인자를 �
 from django.shortcuts import redirect #url만 이동하는 것
 import json
 
+from django.views.decorators.csrf import csrf_protect
+
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -12,6 +14,7 @@ def desc(request):
 def workout(request):
     return render(request, 'workout.html')
 
+@csrf_protect
 def result(request):
     if request.method == 'POST':
         result_data = json.load(request.body)
