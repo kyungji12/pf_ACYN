@@ -7,7 +7,7 @@ let pose ;
 let skeleton ; 
 
 let state = 'waiting';
-let pose_results = [];
+let pose_arr = [];
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
@@ -95,28 +95,31 @@ function gotPoses(poses){
         skeleton = poses[0].skeleton;
         if (state == 'collecting') {
             // console.log(pose);
-            // let pose_results = [];
+            let results = [];
             for (let i = 0; i < pose.keypoints.length; i++) {
                 let keypoint = pose.keypoints[i];
                 let X = keypoint.position.x;
                 let Y = keypoint.position.y;
                 let score = keypoint.score ;
                 if (score < 0.5 ) {
-                    pose_results.push("NaN");
-                    pose_results.push("NaN");
+                    results.push("NaN");
+                    results.push("NaN");
                     // console.log("NaN",keypoint.part,i,score, X);
                     // console.log("NaN",keypoint.part,i,score, Y);
                 } else {
-                    pose_results.push(X);
-                    pose_results.push(Y);
+                    results.push(X);
+                    results.push(Y);
                     // console.log(keypoint.part,i,score, X);
                     // console.log(keypoint.part,i,score, Y);
                 }
-                // console.log(i , "-score: ",score);
+                // pose_arr.push(results);
             }
-            // pose_results 보내기
-            // console.log(pose_results);
+            // console.log(results);
+            pose_arr.pop(results);
+            pose_arr.push(results);
+            console.log(pose_arr);
         }
+        // console.log(pose_arr);
     }
 }
 function sendJson(){
@@ -124,7 +127,7 @@ function sendJson(){
         type: "POST",
         url: "/result/",
         dataType: "json",
-        data: JSON.stringify(pose_results),
+        data: JSON.stringify(pose_arr),
         contentType: "application/json;charset=UTF-8",
         success: function (data, response) {
           console.log("response");
