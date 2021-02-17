@@ -2,8 +2,12 @@ from django.shortcuts import render #html파일에 원하는 context인자를 �
 from django.shortcuts import redirect #url만 이동하는 것
 import json
 import numpy as np
-from .make_DF import Model as model
-from .report import Report as report
+from .make_DF import Model 
+from .report import Report
+
+#인스턴스 생성
+model = Model()
+report = Report()
 
 # Create your views here.
 def home(request):
@@ -19,15 +23,15 @@ def result(request):
     if request.method == 'POST':
         #데이터 받아오기
         result_data = json.loads(request.body.decode('utf-8'))
-        # print(result_data)
+        print("🌷제이슨 파일: ",result_data)
 
         #받아온 데이터를 예측 모델 형태에 맞게 변환하기
         model_data = model.make_data(result_data)
-        # print(model_data)
+        print("💜변환 파일: ",model_data)
         
         #예측모델에 넣기
         predict_data = model.predict(model_data)
-        print(predict_data)
+        print("🎖예측 파일: ",predict_data)
 
 
         return render(request, 'result.html')
