@@ -17,48 +17,48 @@ class Report():
             "발목" : "발목 모아주세요. 잘못된 발목 위치는 허리와 엉덩이가 일직선 되는 밸런스를 무너뜨리는 원인이 됩니다."
         }
 
-    def made(self,result_list):
-        result_list_2 = []
-        for i in result_list:
-            a_xy = i[:34]
-            score_list = i[34:]
-            x_list = []
-            y_list = []
+    # def made(self,result_list):
+    #     result_list_2 = []
+    #     for i in result_list:
+    #         a_xy = i[:34]
+    #         score_list = i[34:]
+    #         x_list = []
+    #         y_list = []
             
             
-            for j in range(len(a_xy)):
-                if j == 0:
-                    x_list.append(a_xy[j])
-                elif j % 2 == 0 :
-                    x_list.append(a_xy[j])
-                else:
-                    y_list.append(a_xy[j])
-            result_list_2.append([x_list,y_list,score_list])
+    #         for j in range(len(a_xy)):
+    #             if j == 0:
+    #                 x_list.append(a_xy[j])
+    #             elif j % 2 == 0 :
+    #                 x_list.append(a_xy[j])
+    #             else:
+    #                 y_list.append(a_xy[j])
+    #         result_list_2.append([x_list,y_list,score_list])
             
-        return result_list_2
+    #     return result_list_2
 
-    def made_dataframe(self,input_):
-        key= ["nose","leftEye","rightEye","leftEar","rightEar","leftShoulder","rightShoulder","leftElbow","rightElbow","leftWrist","rightWrist","leftHip","rightHip","leftKnee","rightKnee","leftAnkle","rightAnkle"]
-        input_data = pd.DataFrame(columns = key)
-        idx = 0
-        for i in range(len(input_)):
-            x_ = input_[i][0]
-            y_ = input_[i][1]
-            score_ = input_[i][2]
+    # def made_dataframe(self,input_):
+    #     key= ["nose","leftEye","rightEye","leftEar","rightEar","leftShoulder","rightShoulder","leftElbow","rightElbow","leftWrist","rightWrist","leftHip","rightHip","leftKnee","rightKnee","leftAnkle","rightAnkle"]
+    #     input_data = pd.DataFrame(columns = key)
+    #     idx = 0
+    #     for i in range(len(input_)):
+    #         x_ = input_[i][0]
+    #         y_ = input_[i][1]
+    #         score_ = input_[i][2]
             
-            for j in range(4):
-                if j == 0:
-                    input_data.loc[j + idx] =x_
-                elif j == 1:
-                    input_data.loc[j + idx] =y_
-                elif j == 2:
-                    input_data.loc[j + idx] =score_
-                else:
-                    input_data.loc[j + idx] =key
-            idx += 4
-            # input_data = input_data.drop(input_data.index[-1])
+    #         for j in range(4):
+    #             if j == 0:
+    #                 input_data.loc[j + idx] =x_
+    #             elif j == 1:
+    #                 input_data.loc[j + idx] =y_
+    #             elif j == 2:
+    #                 input_data.loc[j + idx] =score_
+    #             else:
+    #                 input_data.loc[j + idx] =key
+    #         idx += 4
+    #         # input_data = input_data.drop(input_data.index[-1])
 
-        return input_data
+    #     return input_data
 
 
 #======================================================================================================================================
