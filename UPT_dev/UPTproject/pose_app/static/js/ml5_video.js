@@ -67,6 +67,7 @@ let countDown = setInterval(function(){
 
         $('#stopBtn').click(function(){
             sendJson();
+            // window.location.href = '/result/'
         });
 
     } else if (0 < timeLeft && timeLeft <= 5) {

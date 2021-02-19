@@ -23,6 +23,7 @@ class Model():
 
     # def make_data(self,df_data):
     def make_data(self, input_data):
+        print(input_data)
         input_data = input_data[0]
         
         varX = []
