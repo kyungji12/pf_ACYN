@@ -74,8 +74,9 @@
                             <li>자세를 풀어주세요!</li>
                             <li>
                                 <!--<a href="{% url 'result' %}" id="stopBtn" class="move-btn" onclick="">분석하기</a>-->
-                                {% csrf_token %}
+                                {% comment %} {% csrf_token %} {% endcomment %}
                                 <button type="button"class="move-btn"id="stopBtn">분석하기</button>
+                                <!--onclick = "location.href='{% url 'result' %}'"-->
                             </li>
                         </ul>
                     </div>                    
