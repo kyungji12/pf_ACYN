@@ -126,7 +126,8 @@ function gotPoses(poses){
 function sendJson(){
     $.ajax({
         type: "POST",
-        url: "/result/",
+        url: "/workout/",
+        // url: "/result/",
         dataType: "json",
         data: JSON.stringify(pose_arr),
         contentType: "application/json;charset=UTF-8",
