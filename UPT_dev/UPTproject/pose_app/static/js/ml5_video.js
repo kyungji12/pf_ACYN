@@ -141,7 +141,15 @@ function sendJson(){
           console.log(status, error);
         },
     });
-}
+}     
+// function myFunction() {
+//   var myVar = setTimeout(showPage, 3000);
+// }
+
+// function showPage() {
+//   document.getElementById("loading-section").style.display = "none";
+//   document.getElementById("myDiv").style.display = "block";
+// }
 function modelReady(){
     console.log("model ready");
 }
