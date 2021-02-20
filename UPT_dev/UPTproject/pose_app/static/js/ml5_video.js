@@ -132,11 +132,10 @@ function sendJson(){
         data: JSON.stringify(pose_arr),
         contentType: "application/json;charset=UTF-8",
         success: function (data, response) {
-          console.log("response");
           console.log(data);
-        //   $(".title").text("");
-        //   $(".desc").text("");
-        //   $(".desc").text(data);
+          $(".title").text(data['msg']);
+          $(".desc > li ").text(data['model']);
+        //   $(".desc").text(response.result);
         },
         error: function (jqXHR, status, error) {
           console.log(status, error);
