@@ -356,11 +356,17 @@ body {
     }
   }
   
-  #myDiv {
+  /* #myDiv {
     display: none;
-  }
+  } */
   
-  .result-section .desc {
+  /* .result-section .desc {
+    padding: 3rem 0 0 2rem;
+  } */
+  .result-box {
+    display : none;
+  }
+  .result-box .desc {
     padding: 3rem 0 0 2rem;
   }
   footer {

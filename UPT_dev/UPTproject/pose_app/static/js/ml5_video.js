@@ -64,10 +64,14 @@ let countDown = setInterval(function(){
         workoutSection.style.display = "none";
         stopSection.style.display = "block";
         video.pause();
-
         $('#stopBtn').click(function(){
+            $('#loading-section').css('display', 'block');
+            $('#stopSection').css('display','none');
             sendJson();
-            // window.location.href = '/result/'
+            setTimeout(function(){
+              $('#loading-section').css('display', 'none');
+              $('.result-box').css('display', 'block');
+            },2000);
         });
 
     } else if (0 < timeLeft && timeLeft <= 5) {
@@ -133,23 +137,15 @@ function sendJson(){
         contentType: "application/json;charset=UTF-8",
         success: function (data, response) {
           console.log(data);
-          $(".title").text(data['msg']);
-          $(".desc > li ").text(data['model']);
+        //   $(".title").text(data['msg']);
+          $(".result-box > .desc.result > li ").text(data['msg']);
         //   $(".desc").text(response.result);
         },
         error: function (jqXHR, status, error) {
           console.log(status, error);
         },
     });
-}     
-// function myFunction() {
-//   var myVar = setTimeout(showPage, 3000);
-// }
-
-// function showPage() {
-//   document.getElementById("loading-section").style.display = "none";
-//   document.getElementById("myDiv").style.display = "block";
-// }
+}
 function modelReady(){
     console.log("model ready");
 }

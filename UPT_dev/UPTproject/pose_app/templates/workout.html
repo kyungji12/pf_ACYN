@@ -59,9 +59,10 @@
     <main>
       <!-- 로딩 화면 시작 -->
       <div id="loading-section">
-          <h1 class = "title">결과를 작성중입니다.</h1>
+          <!-- <h1 class = "title">결과를 작성중입니다.</h1> -->
+          <h1 class = "title">잠시만 기다려주세요 :)</h1>
           <div id="loader"></div>
-      </div>
+      </div> 
       <!-- 메인 -->
       <div class="container">
           <section class="desc-section">
@@ -84,7 +85,16 @@
                                 <!--onclick = "location.href='{% url 'result' %}'"-->
                             </li>
                         </ul>
-                    </div>                    
+                    </div> 
+                      <div class="result-box">
+                        <h1 class="title">
+                            <strong>'윤경지'</strong>님의
+                            <br>운동 결과입니다.
+                        </h1>
+                        <ul class="desc result">
+                            <li></li>
+                        </ul>
+                    </div>                            
                 </div>
                 <div class="col-md-8">
                    <!-- <img src="{% static 'images/img_desc_1.png' %}" alt="사용법 설명 이미지"> -->
@@ -139,6 +149,15 @@
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
               }
             }
+            //,
+            //complete: function(){
+            //  $('#stopBtn').on('click', function(){
+            //    $('#loading-section').css('display', 'block');
+            //    setTimeout(function(){
+            //      $('#loading-section').css('display', 'none');
+            //    },2000);
+            //  });
+            //}
           });
         });
       </script>
