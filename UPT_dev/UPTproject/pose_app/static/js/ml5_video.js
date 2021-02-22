@@ -138,8 +138,14 @@ function sendJson(){
         success: function (data, response) {
           console.log(data);
         //   $(".title").text(data['msg']);
-          $(".result-box > .desc.result > li ").text(data['msg']);
+        //   $(".result-box > .desc.result > li ").text(data['model']);
+        // $('.result-box > .desc.result > li').text(data['result']['0']);
         //   $(".desc").text(response.result);
+            if(data['result']['0'] == '0'){
+                $('.result-box > .desc.result > li').text('잘못된 자세입니다.');
+            }else{
+                $('.result-box > .desc.result > li').text('바른자세입니다.');
+            }
         },
         error: function (jqXHR, status, error) {
           console.log(status, error);
