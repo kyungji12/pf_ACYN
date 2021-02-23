@@ -9,6 +9,31 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <p>Say Hello! </p>
+    <div class="container header-container">
+        <div class="container-inner">
+            <nav class="header">
+                <a class="logo">
+                    <img src="{% static 'images/aint-dozy-logo.png'%}">
+                </a>
+                <a class="button light header-login">Login</a>
+                <a class="button header-signup">Sign up</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-home">
+        <div class="container section home-hero">
+            <div class="container-inner">
+                <div class="home-hero__header">
+                    <h1 class="home-hero__headline">We Ain't Dozy</h1>
+                    <h2 class="home-hero__subtitle">
+                        Some people wake up drowsy.<br>
+                        Some people wake up energized.<br>
+                        I wake up dead. 
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
