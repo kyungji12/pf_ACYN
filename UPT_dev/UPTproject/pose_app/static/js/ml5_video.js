@@ -21,38 +21,8 @@ let workoutSection = document.getElementById("workoutSection");
 let stopSection = document.getElementById("stopSection");
 
 
-// //countdown 
-// let timeLeft = 16; //비디오 로딩 시간 약 1초 + 준비시간 10초 + 운동시간 5초 = 16초
-// let countDown = setInterval(function(){
-//     timeLeft -=1 ;
-//     if (timeLeft <= 0) {
-//         clearInterval(countDown);
-//         state = 'waiting';
-//         console.log("운동끝!!!", state);
-
-//         readySection.style.display = "none";
-//         workoutSection.style.display = "none";
-//         stopSection.style.display = "block";
-//         video.pause();
-//         brain.saveData('test-data');
-
-//     } else if (0 < timeLeft && timeLeft <= 5) {
-//         state = 'collecting';
-//         console.log("운동시간", state);
-
-//         readySection.style.display = "none";
-//         workoutSection.style.display = "block";
-//         workoutSection.innerHTML = "<h1 class='title'>OK!</h1><p class='desc'><span class='timer'>"+timeLeft+"</span>초 버티세요! </p>";
-
-//     } else {
-//         console.log("준비시간", state);
-
-//         readySection.innerHTML = "<h1 class='title'>자세를 <br>맞춰주세요.</h1><p class='desc'><span class='timer'>"+(timeLeft-5)+"</span>초 후 자세를 취해주세요. </p>";
-//     }
-// },1000);
-
 //countdown 
-let timeLeft = 3; //비디오 로딩 시간 약 1초 + 준비시간 1초 + 운동시간 1초 = 3초
+let timeLeft = 16; //비디오 로딩 시간 약 1초 + 준비시간 10초 + 운동시간 5초 = 16초
 let countDown = setInterval(function(){
     timeLeft -=1 ;
     if (timeLeft <= 0) {
@@ -64,15 +34,7 @@ let countDown = setInterval(function(){
         workoutSection.style.display = "none";
         stopSection.style.display = "block";
         video.pause();
-        $('#stopBtn').click(function(){
-            $('#loading-section').css('display', 'block');
-            $('#stopSection').css('display','none');
-            sendJson();
-            setTimeout(function(){
-              $('#loading-section').css('display', 'none');
-              $('.result-box').css('display', 'block');
-            },2000);
-        });
+        brain.saveData('test-data');
 
     } else if (0 < timeLeft && timeLeft <= 5) {
         state = 'collecting';
@@ -85,9 +47,47 @@ let countDown = setInterval(function(){
     } else {
         console.log("준비시간", state);
 
-        readySection.innerHTML = "<h1 class='title'>자세를 <br>맞춰주세요.</h1><p class='desc'><span class='timer'>"+(timeLeft)+"</span>초 후 자세를 취해주세요. </p>";
+        readySection.innerHTML = "<h1 class='title'>자세를 <br>맞춰주세요.</h1><p class='desc'><span class='timer'>"+(timeLeft-5)+"</span>초 후 자세를 취해주세요. </p>";
     }
 },1000);
+
+// //countdown 
+// let timeLeft = 3; //비디오 로딩 시간 약 1초 + 준비시간 1초 + 운동시간 1초 = 3초
+// let countDown = setInterval(function(){
+//     timeLeft -=1 ;
+//     if (timeLeft <= 0) {
+//         clearInterval(countDown);
+//         state = 'waiting';
+//         console.log("운동끝!!!", state);
+
+//         readySection.style.display = "none";
+//         workoutSection.style.display = "none";
+//         stopSection.style.display = "block";
+//         video.pause();
+//         $('#stopBtn').click(function(){
+//             $('#loading-section').css('display', 'block');
+//             $('#stopSection').css('display','none');
+//             sendJson();
+//             setTimeout(function(){
+//               $('#loading-section').css('display', 'none');
+//               $('.result-box').css('display', 'block');
+//             },2000);
+//         });
+
+//     } else if (0 < timeLeft && timeLeft <= 5) {
+//         state = 'collecting';
+//         console.log("운동시간", state);
+
+//         readySection.style.display = "none";
+//         workoutSection.style.display = "block";
+//         workoutSection.innerHTML = "<h1 class='title'>OK!</h1><p class='desc'><span class='timer'>"+timeLeft+"</span>초 버티세요! </p>";
+
+//     } else {
+//         console.log("준비시간", state);
+
+//         readySection.innerHTML = "<h1 class='title'>자세를 <br>맞춰주세요.</h1><p class='desc'><span class='timer'>"+(timeLeft)+"</span>초 후 자세를 취해주세요. </p>";
+//     }
+// },1000);
 
 function setup(){
     // video.hide();
