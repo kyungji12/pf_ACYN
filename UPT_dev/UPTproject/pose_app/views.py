@@ -21,16 +21,16 @@ def workout(request):
     if request.method == 'POST':
         #데이터 받아오기
         result_data = json.loads(request.body.decode('utf-8'))
-        print("🌷제이슨 파일: ",result_data)
+        # print("🌷제이슨 파일: ",result_data)
         if result_data :
             #받아온 데이터를 예측 모델 형태에 맞게 변환하기
             model_data = model.make_data(result_data)
             model_data_list = model_data.to_json(orient ='columns')
-            print("💜변환 파일: ", model_data.columns.values)
+            # print("💜변환 파일: ", model_data.columns.values)
         
             #예측모델에 넣기
             predict_data = model.predict(model_data)
-            print("🎖예측 파일: ",predict_data)
+            # print("🎖예측 파일: ",predict_data)
 
             context = {
                 'msg' : '성공', 

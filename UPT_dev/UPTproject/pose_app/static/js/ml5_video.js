@@ -142,9 +142,9 @@ function sendJson(){
         // $('.result-box > .desc.result > li').text(data['result']['0']);
         //   $(".desc").text(response.result);
             if(data['result']['0'] == '0'){
-                $('.result-box > .desc.result > li').text('잘못된 자세입니다.');
+                $('.result-box > .desc.result > li').text('잘못된 자세를 취했어요 :(');
             }else{
-                $('.result-box > .desc.result > li').text('바른자세입니다.');
+                $('.result-box > .desc.result > li').text('바른자세를 유지하셨군요! :)');
             }
         },
         error: function (jqXHR, status, error) {
