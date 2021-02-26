@@ -13,8 +13,8 @@
     right: 0;
     left: 0;
     height: 4.5rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
     transition: color 0.5s, background-color 0.5s;
     background-color: #fff;
 }
@@ -122,9 +122,9 @@
 }
 .home-hero__headline {
     display: block;
-    margin: 0.5em auto 0.2em;
+    margin: 0.3em auto 0.2em;
     color: #9572ce;
-    font-size: calc(5.5vw + 1rem);
+    font-size: calc(5vw + 1rem);
     line-height: 1;
     font-weight: 800;
 }
@@ -134,18 +134,20 @@
     font-family: "Nunito Sans";
     font-size: 1.5rem;
     font-weight: 200;
-    line-height: 1.5;
+    line-height: 1.2;
     color: #5a626b;
 }
 .home-hero__img {
     width: 100%;
+    /* width: 70%; */
+    max-width: 100%;
+    /* max-width: 70%; */
     margin-top: calc(-5em + 20vh);
     transition: transform 0.6s;
     transform: translateY(calc(5em - 15vh));
     will-change: transform;
     background-color: #fff;
     font-size: calc(0.5vw + 1rem);
-    max-width: 100%;
     height: auto;
     vertical-align: middle;
 }
@@ -155,7 +157,7 @@
     margin-bottom: 5rem;
     padding-top: 5rem;
     text-align: right;
-    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+    /* border-top: 0.1rem solid rgba(0, 0, 0, 0.2); */
     font-size: 0.6rem;
 }
 @media (min-width: 40em){

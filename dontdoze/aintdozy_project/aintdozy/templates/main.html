@@ -15,8 +15,8 @@
                 <a class="logo">
                     <img src="{% static 'images/aint-dozy-logo.png'%}">
                 </a>
-                <a class="button light header-login">Login</a>
-                <a class="button header-signup">Sign up</a>
+                <a class="button light header-login" href = "{% url "login" %}">Login</a>
+                <a class="button header-signup" href = "{% url 'signup' %}">Sign up</a>
             </nav>
         </div>
     </div>
