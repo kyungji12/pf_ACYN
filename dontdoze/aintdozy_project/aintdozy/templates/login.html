@@ -9,13 +9,27 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body class="login-body">
-    <div>
-        <div>
-            <div>
-            {% csrf_token %}
-            <form>
-            
-            </form>
+    <div class="app">
+        <div class="main">
+            <div class="content login-form-container">
+                <div class"login-form block-section">
+                {% csrf_token %}
+                <form>
+                    <div>
+                        <div class="logo"></div>
+                        <h1 class="login-form-heading"></h1>
+                        <div class="form-fields">
+                            <div class="form-group">
+                                <input required type="email">
+                                <input required type="password"> 
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="">Log in</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
             </div>
         </div>
     </div>
