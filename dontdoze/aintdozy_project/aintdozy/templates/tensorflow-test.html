@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ain't Dozy</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+    <!-- Load the coco-ssd model. -->
+    <script   script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+</head>
+<body>
+    <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
+    <img id="img" src="{% static 'images/aint-dozy-logo.png'%}" />
+
+    <!-- Place your code in the script tag below. You can also use an external .js file -->
+    <script>
+    // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
+    // available on the index-page because of the script tag above.
+
+    const img = document.getElementById('img');
+
+    // Load the model.
+    cocoSsd.load().then(model => {
+        // detect objects in the image.
+        model.detect(img).then(predictions => {
+        console.log('Predictions: ', predictions);
+        });
+    });
+    </script>
+</body>
+</html>

@@ -27,4 +27,6 @@ urlpatterns = [
     path('detect/', views.detect, name='detect'),
     path('alarm/', views.alarm, name='alarm'),
 
+    # path('tensorflow-test/', views.tfjs, name='tfjs'),
+
 ]

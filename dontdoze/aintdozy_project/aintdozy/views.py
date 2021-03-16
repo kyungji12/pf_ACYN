@@ -18,3 +18,9 @@ def detect(request):
 
 def alarm(request):
     return render(request, 'alarm.html')
+
+
+
+
+# def tfjs(request):
+#     return render(request, 'tensorflow-test.html')
